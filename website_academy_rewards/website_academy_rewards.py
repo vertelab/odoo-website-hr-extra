@@ -28,7 +28,25 @@ from openerp.tools.translate import _
 from openerp.addons.web.http import request
 import werkzeug.urls
 
-class WebsiteCustomer(http.Controller):
+class academy_reward(models.Model):
+    _name = "academy.reward"
+    name = fields.Char()
+    rewardee_ids = fields.One2Many('academy.rewardee')
+    
+class academy_rewardee(models.Model):
+    _name = "academy.rewardee"
+    
+    name = fields.Char()
+    partner_id = fields.Many2one('res.partner')
+    reward_id = fields.Many2one('academy.reward')
+    description = fields.Text()
+
+class res_partner(models.Model):
+    _inherit = "res.partner"
+    reward_ids = fields.One2Many('academy.rewardee')
+    
+
+class WebsiteRewardees(http.Controller):
     _references_per_page = 20
 
     @http.route([
