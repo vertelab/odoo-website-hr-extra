@@ -11,6 +11,7 @@ Administer academy rewards and rewardees
 
 Credits
 =======
+http://hagdahlsakademien.se
 
 Contributors
 ------------
