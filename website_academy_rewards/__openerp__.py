@@ -32,6 +32,7 @@ Acacemy Rewards
     'depends': [
         'website',
         'website_google_map',
+        'hr',
     ],
     'data': [
         'views/website_academy_rewards.xml',

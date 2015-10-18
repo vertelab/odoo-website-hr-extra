@@ -23,6 +23,8 @@ import openerp.tools
 import xmlrpclib
 from openerp.exceptions import Warning
 import os, string
+from openerp import http
+from openerp.http import request
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -39,8 +41,6 @@ class hr(models.Model):
                                   ('13','Stol nr 13'),('14','Stol nr 14'),
                                   ('None','None'),('Emeritus','emeritus')],string='Chair')
 
-from openerp import http
-from openerp.http import request
 
 class website_hr(http.Controller):
 
