@@ -29,29 +29,45 @@ from openerp.http import request
 import werkzeug.urls
 
 
-# class academy_reward(models.Model):
-#     _name = "academy.reward"
-#     name = fields.Char()
-#     rewardee_ids = fields.One2Many('academy.rewardee')
+class academy_reward(models.Model):  # prize
+    _name = "academy.reward"
+
+    name = fields.Char(string='Prize Name')
+    rewardee_ids = fields.One2many(comodel_name='academy.rewardee', inverse_name='partner_id', string='Winners')
+    description = fields.Text(string='Description')
 
 
-class academy_rewardee(models.Model):
+class academy_rewardee(models.Model):  # who took prize
     _name = "academy.rewardee"
     
-    name = fields.Char()
-    partner_id = fields.Many2one('res.partner')
-    reward_id = fields.Many2one('academy.reward')
-    description = fields.Text(string='Description')
-    winner_image = fields.Binary(string='Winner Image')
+    name = fields.Char(string='Prizewinner', store=True)
+    reward_year = fields.Integer(string='Year')
+    partner_id = fields.Many2one(comodel_name='res.partner')
+    reward_id = fields.Many2one(comodel_name='academy.reward', string='Prize')
+    comment = fields.Text(string='Comment')
 
-# class res_partner(models.Model):
-#     _inherit = "res.partner"
-#     reward_ids = fields.One2Many('academy.rewardee')
-    
 
-# class WebsiteRewardees(http.Controller):
-#     _references_per_page = 20
-#
+class res_partner(models.Model):
+    _inherit = "res.partner"
+
+    reward_ids = fields.Many2many(comodel_name='academy.reward', string='Rewards')
+
+
+class WebsiteRewardees(http.Controller):
+    _references_per_page = 20
+
+    @http.route(['/rewardees'], type='http', auth="public", website=True)
+    def rewardees(self, page=0, year=0, rewards=None, **post):
+        rewards = request.env['academy.reward'].sudo().search([])
+        # rewardees = request.env['academy.rewardee'].sudo().search([])
+        rewardees = request.env['res.partner'].sudo().search([('reward_ids', '!=', '')])
+        return request.website.render("website_academy_rewards.index_rewardees", {'rewards': rewards, 'rewardees': rewardees})
+
+    @http.route(['/rewardee/<model("res.partner"):rewardee>'], type='http', auth="public", website=True)
+    def rewardee(self, page=0, year=0, rewards=None, rewardee=None, **post):
+        rewards = request.env['academy.reward'].sudo().search([])
+        return request.website.render("website_academy_rewards.index_rewardee", {'rewards': rewards, 'rewardee': rewardee})
+
 #     @http.route([
 #         '/rewardees',
 #         '/rewardees/page/<int:page>',
