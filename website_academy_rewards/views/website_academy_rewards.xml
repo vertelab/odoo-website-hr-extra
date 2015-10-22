@@ -23,7 +23,15 @@
                                         Utmärkelser
                                     </h1>
                                     <t t-foreach="rewards" t-as="r">
-                                        <h4 t-field="r.name"/>
+                                        <a t-att-href="'/reward/%s' %r.id"><h4 t-field="r.name"/></a>
+                                    </t>
+                                </div>
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #ddd;">
+                                    <h1 class="text-center">
+                                        År
+                                    </h1>
+                                    <t t-foreach="rewards.get_years()" t-as="y">
+                                        <a t-att-href="'/reward/year/%s' % y"><h4 t-esc="y"/></a>
                                     </t>
                                 </div>
                                 <div class="col-md-12 mt32" style="padding: 20px; background-color: #ddd;">
@@ -48,17 +56,17 @@
                                     <t t-foreach="rewardees" t-as="r">
                                         <div class="col-md-12">
                                             <div class="col-md-6 mt16">
-                                                <span t-field="r.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                                                <span t-field="r.partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
                                             </div>
                                             <div class="col-md-6 mt16">
-                                                <a t-att-href="'/rewardee/%s' %r.id"><h3 t-field="r.name"/></a>
-                                                <t t-if="r.child_ids">
-                                                    <t t-foreach="r.child_ids" t-as="rc">
+                                                <a t-att-href="'/rewardee/%s' %r.id"><h3 t-field="r.partner_id.name"/></a>
+                                                <t t-if="r.partner_id.child_ids">
+                                                    <t t-foreach="r.partner_id.child_ids" t-as="rc">
                                                         <h4 t-field="rc.name"/>
                                                     </t>
                                                 </t>
                                                 <!--<p t-field="r.reward_year"/>-->
-                                                <p>Motivering</p>
+                                                <p t-field="r.partner_id.rewardee_ids.comment"/>
                                             </div>
                                         </div>
                                     </t>
@@ -105,7 +113,15 @@
                                         Utmärkelser
                                     </h1>
                                     <t t-foreach="rewards" t-as="r">
-                                        <h4 t-field="r.name"/>
+                                        <a t-att-href="'/reward/%s' %r.id"><h4 t-field="r.name"/></a>
+                                    </t>
+                                </div>
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #ddd;">
+                                    <h1 class="text-center">
+                                        År
+                                    </h1>
+                                    <t t-foreach="rewards.get_years()" t-as="y">
+                                        <a t-att-href="'/reward/year/%s' % y"><h4 t-esc="y"/></a>
                                     </t>
                                 </div>
                                 <div class="col-md-12 mt32" style="padding: 20px; background-color: #ddd;">
@@ -120,17 +136,17 @@
 
                                     <div class="col-md-12">
                                         <div class="col-md-6 mt16">
-                                            <span t-field="rewardee.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                                            <span t-field="rewardee.partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
                                         </div>
                                         <div class="col-md-6 mt16">
-                                            <h3 t-field="rewardee.name"/>
-                                            <t t-if="rewardee.child_ids">
-                                                <t t-foreach="rewardee.child_ids" t-as="rc">
+                                            <h3 t-field="rewardee.partner_id.name"/>
+                                            <t t-if="rewardee.partner_id.child_ids">
+                                                <t t-foreach="rewardee.partner_id.child_ids" t-as="rc">
                                                     <h4 t-field="rc.name"/>
                                                 </t>
                                             </t>
                                             <!--<p t-field="r.reward_year"/>-->
-                                            <p>Motivering</p>
+                                            <p t-field="rewardee.partner_id.rewardee_ids.comment"/>
                                         </div>
                                     </div>
                                 </div>
@@ -270,15 +286,20 @@
             </t>
         </template>
 
-        <record id="view_prize_all" model="ir.ui.view">
+        <!-- rewardee form view -->
+        <record id="view_rewardee_form" model="ir.ui.view">
             <field name="name">academy.rewardee.form</field>
             <field name="model">academy.rewardee</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Prize">
                     <group colspan="4" col="4">
-                        <field name="name"/>
-                        <field name="reward_id" options="{'no_open': True}"/>
+                        <field name="partner_id" colspan="2"/>
+                        <field name="sequence_rewardee" colspan="2"/>
+                    </group>
+                    <group colspan="4" col="4">
+                        <field name="reward_year" colspan="2"/>
+                        <field name="reward_id" colspan="2"/>
                     </group>
                     <group colspan="4" col="4">
                         <field name="comment" colspan="4"/>
@@ -287,14 +308,35 @@
             </field>
         </record>
 
-        <record id="view_prize" model="ir.ui.view">
+        <!-- rewardee tree view -->
+        <record id="view_rewardee_tree" model="ir.ui.view">
+            <field name="name">academy.rewardee.tree</field>
+            <field name="model">academy.rewardee</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Prize">
+                    <field name="sequence_rewardee" widget="handle"/>
+                    <field name="partner_id"/>
+                    <field name="reward_year"/>
+                    <field name="reward_id"/>
+                    <field name="comment"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- reward form view -->
+        <record id="view_reward_form" model="ir.ui.view">
             <field name="name">academy.reward.form</field>
             <field name="model">academy.reward</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Prize">
                     <group colspan="4" col="4">
-                        <field name="name"/>
+                        <field name="name" colspan="2"/>
+                        <field name="sequence_reward" colspan="2"/>
+                    </group>
+                    <group colspan="4" col="4">
+                        <field name="rewardee_ids" colspan="4"/>
                     </group>
                     <group colspan="4" col="4">
                         <field name="description" colspan="4"/>
@@ -303,14 +345,42 @@
             </field>
         </record>
 
+        <!-- reward tree view -->
+        <record id="view_reward_tree" model="ir.ui.view">
+            <field name="name">academy.reward.tree</field>
+            <field name="model">academy.reward</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Prize">
+                    <field name="sequence_reward" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- increase fields in res.partner -->
         <record id="view_partner_form" model="ir.ui.view">
             <field name="name">res.partner.form</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <field name="title" position="after">
-                    <field name="reward_ids" widget="many2many_tags"/>
+                    <field name="rewardee_ids" widget="many2many_tags"/>
                 </field>
+            </field>
+        </record>
+
+        <!-- increase sequence fields in res.partner -->
+        <record id="view_partner_tree" model="ir.ui.view">
+            <field name="name">res.partner.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <tree string="Contacts">
+                    <field name="display_name" position="after">
+                        <!--<field name="sequence_rewardee" widget="handle"/>-->
+                    </field>
+                </tree>
             </field>
         </record>
 
@@ -318,11 +388,11 @@
             <div class="container mb16" style="max-width: 1120px; padding: 0px;">
                 <div style="margin: auto;">
                     <div class="grid js-masonry" style="">
-                        <t t-set="winner" t-value="request.env['res.partner'].sudo().search([('reward_id', '!=', '')])"/>
+                        <t t-set="winner" t-value="request.env['academy.rewardee'].sudo().search([('reward_id', '!=', '')])"/>
                         <t t-foreach="winner" t-as="w">
                             <div class="col-md-3 col-sm-4 col-12 grid-item" style="">
                                 <a href="#" t-att-title="w.name" t-att-reward="w.reward_id.name" t-att-comment="w.comment">
-                                    <span t-field="w.sudo().image" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;style&quot;: &quot;margin: auto&quot;, &quot;class&quot;: &quot;thumbnail img-thumbnail&quot;}"/>
+                                    <span t-field="w.sudo().partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;style&quot;: &quot;margin: auto&quot;, &quot;class&quot;: &quot;thumbnail img-thumbnail&quot;}"/>
                                 </a>
                             </div>
                         </t>

@@ -33,40 +33,64 @@ class academy_reward(models.Model):  # prize
     _name = "academy.reward"
 
     name = fields.Char(string='Prize Name')
-    rewardee_ids = fields.One2many(comodel_name='academy.rewardee', inverse_name='partner_id', string='Winners')
+    rewardee_ids = fields.One2many(comodel_name='academy.rewardee', inverse_name='reward_id', string='Winners')
     description = fields.Text(string='Description')
+    sequence_reward = fields.Integer(string='Sequence')
 
+    @api.model
+    def get_years(self):
+        rewardees = self.env['academy.rewardee'].search([], order='reward_year desc')
+        years = []
+        for r in rewardees:
+            if r.reward_year not in years:
+                years.append(r.reward_year)
+
+        return years
 
 class academy_rewardee(models.Model):  # who took prize
     _name = "academy.rewardee"
-    
-    name = fields.Char(string='Prizewinner', store=True)
+
+    @api.one
+    def _name_(self):
+        self.name = '%s - %s' % (self.reward_id.name, self.reward_year)
+
+    name = fields.Char(compute='_name_', string='Name', store=True)
     reward_year = fields.Integer(string='Year')
-    partner_id = fields.Many2one(comodel_name='res.partner')
+    sequence_rewardee = fields.Integer(string='Sequence')
+    partner_id = fields.Many2one(comodel_name='res.partner', string='Winner')
     reward_id = fields.Many2one(comodel_name='academy.reward', string='Prize')
-    comment = fields.Text(string='Comment')
+    comment = fields.Text(string='Justification')
+
+    # def name_search(self, name='', args=None, operator='ilike', limit=100):
+    #     return super('academy.rewardee', self).name
 
 
 class res_partner(models.Model):
     _inherit = "res.partner"
 
-    reward_ids = fields.Many2many(comodel_name='academy.reward', string='Rewards')
+    rewardee_ids = fields.One2many(comodel_name='academy.rewardee', inverse_name='partner_id', string='Rewardee')
 
 
 class WebsiteRewardees(http.Controller):
     _references_per_page = 20
 
-    @http.route(['/rewardees'], type='http', auth="public", website=True)
-    def rewardees(self, page=0, year=0, rewards=None, **post):
-        rewards = request.env['academy.reward'].sudo().search([])
-        # rewardees = request.env['academy.rewardee'].sudo().search([])
-        rewardees = request.env['res.partner'].sudo().search([('reward_ids', '!=', '')])
-        return request.website.render("website_academy_rewards.index_rewardees", {'rewards': rewards, 'rewardees': rewardees})
+    @http.route(['/rewardees', '/reward/<model("academy.reward"):reward>', '/reward/year/<int:year>'], type='http', auth="public", website=True)
+    def rewardees(self, page=0, year=None, reward=None, **post):
+        rewards = request.env['academy.reward'].sudo().search([], order='sequence_reward')
+        if reward:
+            rewardees = request.env['academy.rewardee'].sudo().search([('reward_id', '=', reward.id)], order='sequence_rewardee')
+        elif year:
+            rewardees = request.env['academy.rewardee'].sudo().search([('reward_year', '=', year)], order='sequence_rewardee')
+        else:
+            rewardees = request.env['academy.rewardee'].sudo().search([], order='sequence_rewardee')
+        return request.website.render("website_academy_rewards.index_rewardees", {'reward': reward, 'rewards': rewards, 'rewardees': rewardees, 'year': year})
 
-    @http.route(['/rewardee/<model("res.partner"):rewardee>'], type='http', auth="public", website=True)
-    def rewardee(self, page=0, year=0, rewards=None, rewardee=None, **post):
-        rewards = request.env['academy.reward'].sudo().search([])
-        return request.website.render("website_academy_rewards.index_rewardee", {'rewards': rewards, 'rewardee': rewardee})
+    @http.route(['/rewardee/<model("academy.rewardee"):rewardee>'], type='http', auth="public", website=True)
+    def rewardee(self, page=0, year=0, rewardee=None, **post):
+        rewards = request.env['academy.reward'].sudo().search([], order='sequence_reward')
+        return request.website.render("website_academy_rewards.index_rewardee", {'rewards': rewards, 'rewardee': rewardee,})
+
+
 
 #     @http.route([
 #         '/rewardees',
