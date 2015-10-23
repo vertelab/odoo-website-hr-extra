@@ -13,12 +13,11 @@
             <t t-call="website.layout">
                 <div id="wrap">
                     <div class="oe_structure">
-
                     </div>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3 mb32" id="ref_left_column">
-                                <div class="col-md-12" style="padding: 20px; background-color: #ddd;">
+                                <div class="col-md-12" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         Utmärkelser
                                     </h1>
@@ -26,7 +25,7 @@
                                         <a t-att-href="'/reward/%s' %r.id"><h4 t-field="r.name"/></a>
                                     </t>
                                 </div>
-                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #ddd;">
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         År
                                     </h1>
@@ -34,15 +33,16 @@
                                         <a t-att-href="'/reward/year/%s' % y"><h4 t-esc="y"/></a>
                                     </t>
                                 </div>
-                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #ddd;">
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
                                     <span>KARTA!</span>
                                 </div>
                             </div>
                             <div class="col-md-8 col-md-offset-1" id="ref_content" style="">
-                                <div class='navbar mb0' style="padding: 20px; background-color: #ddd;">
+                                <div class='navbar mb0' style="padding: 20px; background-color: #fefefe; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         Våra Pristagare
                                     </h1>
+
 
                                     <!--<t t-call="website.pager">-->
                                     <!--<t t-set="classname" t-value="'pull-left'"/>-->
@@ -108,7 +108,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3 mb32" id="ref_left_column">
-                                <div class="col-md-12" style="padding: 20px; background-color: #ddd;">
+                                <div class="col-md-12" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         Utmärkelser
                                     </h1>
@@ -116,7 +116,7 @@
                                         <a t-att-href="'/reward/%s' %r.id"><h4 t-field="r.name"/></a>
                                     </t>
                                 </div>
-                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #ddd;">
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         År
                                     </h1>
@@ -124,16 +124,20 @@
                                         <a t-att-href="'/reward/year/%s' % y"><h4 t-esc="y"/></a>
                                     </t>
                                 </div>
-                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #ddd;">
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
                                     <span>KARTA!</span>
                                 </div>
                             </div>
                             <div class="col-md-8 col-md-offset-1" id="ref_content" style="">
-                                <div class='navbar mb0' style="padding: 20px; background-color: #ddd;">
+                                <div class='navbar mb0' style="padding: 20px; background-color: #fefefe; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         Våra Pristagare
                                     </h1>
-
+                                    <ol class="breadcrumb">
+                                        <li><a href="/rewardees">Våra Pristagare</a></li>
+                                        <li class="active"><span t-field="rewardee.partner_id.name"/></li>
+                                        <li class="active"><span t-field="rewardee.reward_year"/></li>
+                                    </ol>
                                     <div class="col-md-12">
                                         <div class="col-md-6 mt16">
                                             <span t-field="rewardee.partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
@@ -150,9 +154,7 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                     <div class="oe_structure"/>

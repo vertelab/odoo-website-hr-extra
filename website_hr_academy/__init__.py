@@ -1,1 +1,1 @@
-import hr
+import hr_chair
