@@ -1,0 +1,126 @@
+<openerp>
+  <data>
+    <report id="permission_report" model="account.move" string="Permission Report" report_type="qweb-pdf" name="check_access_report.permission_temp" file="check_access_report.permission_temp" />
+    <report id="permission_report" model="res.users" string="Permission Report" report_type="qweb-pdf" name="check_access_report.permission_temp" file="check_access_report.permission_temp" />
+    <!--attachment_use="False" attachment="('daily_ledger'+(object.name or ''))+'.pdf'" /> -->
+
+    <template id="permission_temp">
+      <t t-call="report.html_container">
+        <t t-set="report_name" t-value="'Permission Report'" />
+        <t t-set="last_account_move" t-value="docs[-1].name" />
+        <t t-call="l10n_se_report.compact_layout">
+          <div class="page">
+            <table class="table table-condensed">
+              <t t-foreach="docs" t-as="doc">
+                
+                <!-- <t t-raw="translate_doc(doc.id, doc_model, 'company_id.partner_id.lang', 'ir_rule_logger.permission_document')" /> -->
+                <t t-set="o" t-value="doc"/>
+                <t t-call="check_access_report.permission_document"/>
+              </t>
+            </table>
+          </div>
+        </t>
+      </t>
+    </template>
+
+    <template id="permission_document">
+                <div style="page-break-before: avoid">
+                  <thead>
+                    <th>
+                      <span t-raw="o._name" />
+                    </th>
+                    <th>
+                      <span t-field="o.name" />
+                    </th>
+                    <th>
+                      <span t-field="o.id"/>
+                    </th>
+
+                  </thead>
+                  <tbody>
+
+                      <t t-foreach="o.env['res.users'].search([])" t-as="user">
+                    
+                      <tr>
+                        <td>
+                          <span t-field="user.name"/>
+                        </td>
+                        <td>
+                          <span><t t-if="o.sudo(user.id).check_access_rights('read', raise_exception=False)">R</t></span>
+                          <span><t t-if="o.sudo(user.id).check_access_rights('write', raise_exception=False)">W</t></span>
+                          <span><t t-if="o.sudo(user.id).check_access_rights('create', raise_exception=False)">C</t></span>
+                          <span><t t-if="o.sudo(user.id).check_access_rights('unlink', raise_exception=False)">D</t></span>
+                        </td>
+                        <td>
+                          <span t-esc="', '.join([g.name for g in user.groups_id])"/>
+                        </td>
+
+                      </tr><!-- 
+                      <tr>
+                        <td>
+                          <span>Rules</span>
+                        </td>
+                        <td>
+                          <span><t t-if="not o.sudo(user.id).check_access_rule('read')">R</t></span>
+                          <span><t t-if="not o.sudo(user.id).check_access_rule('write')">W</t></span>
+                          <span><t t-if="not o.sudo(user.id).check_access_rule('create')">C</t></span>
+                          <span><t t-if="not o.sudo(user.id).check_access_rule('unlink')">D</t></span>
+                        </td>
+                        
+
+                      </tr> -->
+
+                      </t>
+                  </tbody>
+                </div>
+    </template>
+    
+     <template id="compact_layout_header">
+      <div class="header">
+        <div class="row" style="max-height: 50px;">
+          <div class="col-xs-3">
+            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;" />
+          </div>
+          <div class="col-xs-9 text-right" style="margin-top:20px;" t-raw="report_name" />
+        </div>
+      </div>
+    </template>
+    
+    <template id="compact_layout_footer">
+      <div class="footer">
+        <div class="text-center" style="border-top: 1px solid black;">
+          <ul class="list-inline">
+            <li>
+               <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>            
+            </li>
+            <li>
+              <span t-raw="last_account_move" />
+            </li>
+            <li>Page:</li>
+            <li>
+              <span class="page" />
+            </li>
+            <li>/</li>
+            <li>
+              <span class="topage" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </template>
+    
+    <template id="compact_layout">
+      <!-- Multicompany -->
+      <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id" />
+      </t>
+      <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company" />
+      </t>
+      <t t-call="l10n_se_report.compact_layout_header" />
+      <t t-raw="0" />
+      <t t-call="l10n_se_report.compact_layout_footer" />
+    </template>
+    
+  </data>
+</openerp>
