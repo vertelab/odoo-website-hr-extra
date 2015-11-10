@@ -1,13 +1,12 @@
 <openerp>
   <data>
-    <report id="permission_report" model="account.move" string="Permission Report" report_type="qweb-pdf" name="check_access_report.permission_temp" file="check_access_report.permission_temp" />
-    <report id="permission_report" model="res.users" string="Permission Report" report_type="qweb-pdf" name="check_access_report.permission_temp" file="check_access_report.permission_temp" />
+    <report id="permission_report_account_move" model="account.move" string="Permission Report" report_type="qweb-pdf" name="check_access_report.permission_temp" file="check_access_report.permission_temp" />
+    <report id="permission_report_res_users" model="res.users" string="Permission Report" report_type="qweb-pdf" name="check_access_report.permission_temp" file="check_access_report.permission_temp" />
     <!--attachment_use="False" attachment="('daily_ledger'+(object.name or ''))+'.pdf'" /> -->
 
     <template id="permission_temp">
       <t t-call="report.html_container">
         <t t-set="report_name" t-value="'Permission Report'" />
-        <t t-set="last_account_move" t-value="docs[-1].name" />
         <t t-call="l10n_se_report.compact_layout">
           <div class="page">
             <table class="table table-condensed">
@@ -55,16 +54,16 @@
                           <span t-esc="', '.join([g.name for g in user.groups_id])"/>
                         </td>
 
-                      </tr><!-- 
-                      <tr>
+                      </tr>
+                      <!-- <tr>
                         <td>
                           <span>Rules</span>
                         </td>
                         <td>
-                          <span><t t-if="not o.sudo(user.id).check_access_rule('read')">R</t></span>
-                          <span><t t-if="not o.sudo(user.id).check_access_rule('write')">W</t></span>
-                          <span><t t-if="not o.sudo(user.id).check_access_rule('create')">C</t></span>
-                          <span><t t-if="not o.sudo(user.id).check_access_rule('unlink')">D</t></span>
+                          <span><t t-esc="o.sudo(user.id).check_access_rule('read')"/>R</span>
+                          <span><t t-esc="o.sudo(user.id).check_access_rule('write')">W</t></span>
+                          <span><t t-esc="o.sudo(user.id).check_access_rule('create')">C</t></span>
+                          <span><t t-esc="o.sudo(user.id).check_access_rule('unlink')">D</t></span>
                         </td>
                         
 
@@ -92,9 +91,6 @@
           <ul class="list-inline">
             <li>
                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>            
-            </li>
-            <li>
-              <span t-raw="last_account_move" />
             </li>
             <li>Page:</li>
             <li>
