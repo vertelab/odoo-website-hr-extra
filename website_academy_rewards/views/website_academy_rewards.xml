@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Layout add nav and footer -->
+        <template id="footer_custom" inherit_id="website.footer_default" name="Footer Rewardees Link">
+            <xpath expr="//div[@id='info']/ul" position="inside">
+                <li><a href="/rewardees">Our Rewardees</a></li>
+            </xpath>
+        </template>
+
+        <template id="index_rewardees" name="Our Rewardees">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 mb32" id="ref_left_column">
+                                <div class="col-md-12" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
+                                    <h1 class="text-center">
+                                        Utmärkelser
+                                    </h1>
+                                    <t t-foreach="rewards" t-as="r">
+                                        <a t-att-href="'/reward/%s' %r.id"><h4 t-field="r.name"/></a>
+                                    </t>
+                                </div>
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
+                                    <h1 class="text-center">
+                                        År
+                                    </h1>
+                                    <t t-foreach="rewards.get_years()" t-as="y">
+                                        <a t-att-href="'/reward/year/%s' % y"><h4 t-esc="y"/></a>
+                                    </t>
+                                </div>
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
+                                    <span>KARTA!</span>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-md-offset-1" id="ref_content" style="">
+                                <div class='navbar mb0' style="padding: 20px; background-color: #fefefe; border: 1px solid #369;">
+                                    <h1 class="text-center">
+                                        Våra Pristagare
+                                    </h1>
+                                    <ol class="breadcrumb">
+                                        <li><a href="/rewardees">Alla</a></li>
+                                        <t t-if="year">
+                                            <li class="active"><span t-esc="year"/></li>
+                                        </t>
+                                        <t t-if="reward">
+                                            <li class="active"><span t-esc="reward.name"/></li>
+                                        </t>
+                                    </ol>
+                                    <!--<t t-call="website.pager">-->
+                                    <!--<t t-set="classname" t-value="'pull-left'"/>-->
+                                    <!--</t>-->
+                                    <!--<form action="" method="get" class="navbar-search pull-right pagination form-inline">-->
+                                    <!--<div class="form-group">-->
+                                    <!--<input type="text" name="search" class="search-query form-control"-->
+                                    <!--placeholder="Search" t-att-value="post.get('search', '')"/>-->
+                                    <!--</div>-->
+                                    <!--</form>-->
+                                    <t t-foreach="rewardees" t-as="r">
+                                        <div class="col-md-12">
+                                            <div class="col-md-6 mt16">
+                                                <span t-field="r.partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                                            </div>
+                                            <div class="col-md-6 mt16">
+                                                <a t-att-href="'/rewardee/%s' %r.id"><h3 t-field="r.partner_id.name"/></a>
+                                                <t t-if="r.partner_id.child_ids">
+                                                    <t t-foreach="r.partner_id.child_ids" t-as="rc">
+                                                        <h4 t-field="rc.name"/>
+                                                    </t>
+                                                </t>
+                                                <!--<p t-field="r.reward_year"/>-->
+                                                <p t-field="r.partner_id.rewardee_ids.comment"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+
+                                <!--<div class="row">-->
+
+                                <!--<p t-if="not partners">No result found</p>-->
+                                <!--<t t-foreach="partners" t-as="partner">-->
+                                <!--<div class="media">-->
+                                <!--<a class="pull-left" t-attf-href="/rewardees/#{slug(partner)}"-->
+                                <!--t-field="partner.image_small"-->
+                                <!--t-field-options='{"widget": "image", "class": "media-object"}'-->
+                                <!--></a>-->
+                                <!--<div class="media-body" style="min-height: 64px;">-->
+                                <!--<a class="media-heading" t-attf-href="/customers/#{slug(partner)}">-->
+                                <!--<span t-field="partner.display_name"/>-->
+                                <!--</a>-->
+                                <!--<div t-field="partner.website_short_description"/>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</t>-->
+                                <!--</div>-->
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="index_rewardee" name="Our Rewardee">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 mb32" id="ref_left_column">
+                                <div class="col-md-12" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
+                                    <h1 class="text-center">
+                                        Utmärkelser
+                                    </h1>
+                                    <t t-foreach="rewards" t-as="r">
+                                        <a t-att-href="'/reward/%s' %r.id"><h4 t-field="r.name"/></a>
+                                    </t>
+                                </div>
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
+                                    <h1 class="text-center">
+                                        År
+                                    </h1>
+                                    <t t-foreach="rewards.get_years()" t-as="y">
+                                        <a t-att-href="'/reward/year/%s' % y"><h4 t-esc="y"/></a>
+                                    </t>
+                                </div>
+                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
+                                    <span>KARTA!</span>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-md-offset-1" id="ref_content" style="">
+                                <div class='navbar mb0' style="padding: 20px; background-color: #fefefe; border: 1px solid #369;">
+                                    <h1 class="text-center">
+                                        Våra Pristagare
+                                    </h1>
+                                    <ol class="breadcrumb">
+                                        <li><a href="/rewardees">Alla</a></li>
+                                        <li class="active"><span t-field="rewardee.partner_id.name"/></li>
+                                    </ol>
+                                    <div class="col-md-12">
+                                        <div class="col-md-6 mt16">
+                                            <span t-field="rewardee.partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                                        </div>
+                                        <div class="col-md-6 mt16">
+                                            <h3 t-field="rewardee.partner_id.name"/>
+                                            <t t-if="rewardee.partner_id.child_ids">
+                                                <t t-foreach="rewardee.partner_id.child_ids" t-as="rc">
+                                                    <h4 t-field="rc.name"/>
+                                                </t>
+                                            </t>
+                                            <!--<p t-field="r.reward_year"/>-->
+                                            <p t-field="rewardee.partner_id.rewardee_ids.comment"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <!-- Option: left column: World Map -->
+        <!--<template id="opt_country" inherit_id="website_customer.index" customize_show="True" name="Show Map">-->
+        <!--<xpath expr="//div[@id='ref_left_column']" position="inside">-->
+        <!--&lt;!&ndash; modal for large map &ndash;&gt;-->
+        <!--<div class="modal fade customer_map_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
+        <!--<div class="modal-dialog modal-lg">-->
+        <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+        <!--<h4 class="modal-title">Region Map</h4>-->
+        <!--</div>-->
+        <!--<iframe t-attf-src="/google_map/?width=898&amp;height=485&amp;partner_ids=#{ google_map_partner_ids }&amp;partner_url=/customers/"-->
+        <!--style="width:898px; height:485px; border:0; padding:0; margin:0;"></iframe>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; modal end &ndash;&gt;-->
+        <!--<h3>Region Map<button class="btn btn-link" data-toggle="modal" data-target=".customer_map_modal"><span class="fa fa-external-link" /></button></h3>-->
+        <!--<ul class="nav">-->
+        <!--<iframe t-attf-src="/google_map?width=260&amp;height=240&amp;partner_ids=#{ google_map_partner_ids }&amp;partner_url=/customers/"-->
+        <!--style="width:260px; height:240px; border:0; padding:0; margin:0;" scrolling="no"></iframe>-->
+        <!--</ul>-->
+        <!--</xpath>-->
+        <!--</template>-->
+
+        <!--<template id="opt_reward_list" inherit_id="website_customer.index" customize_show="True" name="Filter on Rewards">-->
+        <!--<xpath expr="//div[@id='ref_left_column']" position="inside">-->
+        <!--<h3>References by Reward</h3>-->
+        <!--<ul class="nav nav-pills nav-stacked mt16 mb32">-->
+        <!--<t t-foreach="rewards" t-as="reward_dict">-->
+        <!--<t t-if="reward_dict['reward_id']">-->
+        <!--<li t-att-class="reward_dict['country_id'][0] == current_country_id and 'active' or ''">-->
+        <!--<a t-attf-href="/rewardees/#{ country_dict['country_id'][0] and 'country/%s' % slug(country_dict['country_id']) or '' }#{ search_path }">-->
+        <!--<span class="badge pull-right" t-esc="country_dict['country_id_count'] or '0'"/>-->
+        <!--<t t-esc="country_dict['country_id'][1]"/>-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--</t>-->
+        <!--</t>-->
+        <!--</ul>-->
+
+        <!--</xpath>-->
+        <!--</template>-->
+
+        <template id="details" name="Rewardee Detail">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure"/>
+                    <div class="container mt16">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <ol class="breadcrumb">
+                                    <li><a href="/rewardees">Our Rewardees</a></li>
+                                    <li class="active"><span t-field="partner.display_name"/></li>
+                                </ol>
+                            </div>
+                            <t t-call="website_partner.partner_detail">
+                                <t t-set="left_column">
+                                    <div id="left_column"><t t-call="website_customer.implemented_by_block"/></div>
+                                </t>
+                                <t t-set="right_column">
+                                    <div id="right_column"><t t-call="website_customer.references_block"/></div>
+                                </t>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="partner_details" inherit_id="website_partner.partner_page" name="Partner Detail Columns">
+            <xpath expr="//t[@t-call='website_partner.partner_detail']" position="inside">
+                <t t-set="left_column"><div id="left_column"><t t-call="website_customer.implemented_by_block"/></div></t>
+                <t t-set="right_column"><div id="right_column"><t t-call="website_customer.references_block"/></div></t>
+            </xpath>
+        </template>
+
+        <template id="implemented_by_block" name="Partner Implemented By Block">
+            <t t-if="partner.assigned_partner_id and partner.assigned_partner_id.website_published">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Implemented By</h4>
+                    </div>
+                    <div class="panel-body text-center">
+                        <h4>
+                            <a t-attf-href="/partners/#{slug(partner.assigned_partner_id)}">
+                                <span t-field="partner.assigned_partner_id"/>
+                                <span class="small"> (<t t-esc="len([p for p in partner.assigned_partner_id.implemented_partner_ids if p.website_published])"/> reference(s))</span>
+                            </a>
+                        </h4>
+                        <div><a t-attf-href="/partners/#{slug(partner.assigned_partner_id)}"
+                                t-field="partner.assigned_partner_id.image_medium"
+                                t-field-options='{"widget": "image", "class": "center-block"}'
+                                />
+                        </div>
+                        <address class="well text-left">
+                            <div t-field="partner.assigned_partner_id" t-field-options='{
+"widget": "contact",
+"fields": ["address", "website", "phone", "fax", "email"]
+}'/>
+                        </address>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="references_block" name="Partner References Block">
+            <t t-if="any([p.website_published for p in partner.implemented_partner_ids])">
+                <h3 id="references">References</h3>
+                <div t-foreach="partner.implemented_partner_ids" t-as="reference" class="media">
+                    <t t-if="reference.website_published">
+                        <a class="pull-left" t-attf-href="/customers/#{slug(reference)}">
+                            <span t-field="reference.image_small" t-field-options='{"widget": "image", "class": "center-block"}'/>
+                        </a>
+                        <div class="media-body" style="min-height: 64px;">
+                            <a class="media-heading" t-attf-href="/customers/#{slug(reference)}">
+                                <span t-field="reference.self"/>
+                            </a>
+                            <div t-field='reference.website_short_description'/>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+        <!-- rewardee form view -->
+        <record id="view_rewardee_form" model="ir.ui.view">
+            <field name="name">academy.rewardee.form</field>
+            <field name="model">academy.rewardee</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Prize">
+                    <group colspan="4" col="4">
+                        <field name="partner_id" colspan="2"/>
+                        <field name="sequence_rewardee" colspan="2"/>
+                    </group>
+                    <group colspan="4" col="4">
+                        <field name="reward_year" colspan="2"/>
+                        <field name="reward_id" colspan="2"/>
+                    </group>
+                    <group colspan="4" col="4">
+                        <field name="comment" colspan="4"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- rewardee tree view -->
+        <record id="view_rewardee_tree" model="ir.ui.view">
+            <field name="name">academy.rewardee.tree</field>
+            <field name="model">academy.rewardee</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Prize">
+                    <field name="sequence_rewardee" widget="handle"/>
+                    <field name="partner_id"/>
+                    <field name="reward_year"/>
+                    <field name="reward_id"/>
+                    <field name="comment"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- reward form view -->
+        <record id="view_reward_form" model="ir.ui.view">
+            <field name="name">academy.reward.form</field>
+            <field name="model">academy.reward</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Prize">
+                    <group colspan="4" col="4">
+                        <field name="name" colspan="2"/>
+                        <field name="sequence_reward" colspan="2"/>
+                    </group>
+                    <group colspan="4" col="4">
+                        <field name="rewardee_ids" colspan="4"/>
+                    </group>
+                    <group colspan="4" col="4">
+                        <field name="description" colspan="4"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- reward tree view -->
+        <record id="view_reward_tree" model="ir.ui.view">
+            <field name="name">academy.reward.tree</field>
+            <field name="model">academy.reward</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Prize">
+                    <field name="sequence_reward" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- increase fields in res.partner -->
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="title" position="after">
+                    <field name="rewardee_ids" widget="many2many_tags"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- increase sequence fields in res.partner -->
+        <record id="view_partner_tree" model="ir.ui.view">
+            <field name="name">res.partner.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <tree string="Contacts">
+                    <field name="display_name" position="after">
+                        <!--<field name="sequence_rewardee" widget="handle"/>-->
+                    </field>
+                </tree>
+            </field>
+        </record>
+
+        <template id="prize_winners_show_in_website" name="Prize winners show in website">
+            <div class="container mb16" style="max-width: 1120px; padding: 0px;">
+                <div style="margin: auto;">
+                    <div class="grid js-masonry" style="">
+                        <t t-set="winner" t-value="request.env['academy.rewardee'].sudo().search([('reward_id', '!=', '')])"/>
+                        <t t-foreach="winner" t-as="w">
+                            <div class="col-md-3 col-sm-4 col-12 grid-item" style="">
+                                <a href="#" t-att-title="w.name" t-att-reward="w.reward_id.name" t-att-comment="w.comment">
+                                    <span t-field="w.sudo().partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;style&quot;: &quot;margin: auto&quot;, &quot;class&quot;: &quot;thumbnail img-thumbnail&quot;}"/>
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+
+    </data>
+</openerp>

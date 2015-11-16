@@ -23,11 +23,13 @@ import openerp.tools
 import xmlrpclib
 from openerp.exceptions import Warning
 import os, string
+from openerp import http
+from openerp.http import request
 import logging
 _logger = logging.getLogger(__name__)
 
 
-class hr(models.Model):
+class hr_employee(models.Model):
     _inherit = 'hr.employee'
 
     chair_nbr = fields.Selection([('01','Stol nr 1'),('02','Stol nr 2'),('03','Stol nr 3'),
@@ -35,26 +37,23 @@ class hr(models.Model):
                                   ('07','Stol nr 7'),('08','Stol nr 8'),('09','Stol nr 9'),
                                   ('10','Stol nr 10'),('11','Stol nr 11'),('12','Stol nr 12'),
                                   ('13','Stol nr 13'),('14','Stol nr 14'),
-                                  ('None','None'),('Emeritus','emeritus')],string='Chair')
+                                  ('none','None'),('emeritus','Emeritus')],string='Chair')
 
-from openerp import http
-from openerp.http import request
 
 class website_hr(http.Controller):
 
     @http.route(['/academy/chairs'], type='http', auth="public", website=True)
-    def chairs(self, **post):
-        return request.website.render("website_hr_academy.chair_view", 
-            {'employee_ids': request.env['hr.employee'].search([('chair_nbr','not in',['None','emeritus']),('website_published','=',True)],order='chair_nbr')})
+    def chairs_members(self, **post):
+        employee_ids = request.env['hr.employee'].sudo().search([('chair_nbr', 'not in', ['none', 'emeritus']), ('website_published', '=', True)], order='chair_nbr')
+        return request.website.render("website_hr_academy.chairs", {'employee_ids': employee_ids})
 
     @http.route(['/academy/member/<model("hr.employee"):employee>'], type='http', auth="public", website=True)
     def chair(self, employee,**post):
+        return request.website.render("website_hr_academy.employee_view", {'employee': request.env['hr.employee'].sudo().browse(employee.id)})
         
-        return request.website.render("website_hr_academy.employee_view", {'employee': employee})
-        
-
     @http.route(['academy/emeritus'], type='http', auth="public", website=True)
     def emeritus(self, **post):
         return request.website.render("website_hr_academy.emeritus", 
-            {'employee_ids': request.env['hr.employee'].search([('chair_nbr','=','emeritus'),('website_published','=',True)],order='name')})
+            {'employee_ids': request.env['hr.employee'].sudo().search([('chair_nbr','=','emeritus')],order='name')})
+
 
