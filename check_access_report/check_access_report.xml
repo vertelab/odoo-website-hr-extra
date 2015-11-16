@@ -1,13 +1,18 @@
 <openerp>
   <data>
-    <report id="permission_report_account_move" model="account.move" string="Permission Report" report_type="qweb-pdf" name="check_access_report.permission_temp" file="check_access_report.permission_temp" />
-    <report id="permission_report_res_users" model="res.users" string="Permission Report" report_type="qweb-pdf" name="check_access_report.permission_temp" file="check_access_report.permission_temp" />
+    <report id="permission_report_account_move" model="account.move" string="Permission Report" report_type="qweb-pdf" name="permission_account_move" file="permission_account_move" />
+    <template id="permission_account_move"><t t-call="check_access_report.permission_report"/></template>
+    <report id="permission_report_res_users"    model="res.users"    string="Permission Report" report_type="qweb-pdf" name="check_accessreport.permission_res_users" file="check_access_report.permission_res_users" />
+    <template id="permission_res_users"><t t-call="check_access_report.permission_report"/></template>
+    <report id="permission_report_res_company"    model="res.company"    string="Permission Report" report_type="qweb-pdf" name="check_access_report.permission_res_company" file="check_access_report.permission_res_company" />
+    <template id="permission_res_company"><t t-call="check_access_report.permission_report"/></template>
+
     <!--attachment_use="False" attachment="('daily_ledger'+(object.name or ''))+'.pdf'" /> -->
 
-    <template id="permission_temp">
+    <template id="permission_report">
       <t t-call="report.html_container">
         <t t-set="report_name" t-value="'Permission Report'" />
-        <t t-call="l10n_se_report.compact_layout">
+        <t t-call="check_access_report.compact_layout">
           <div class="page">
             <table class="table table-condensed">
               <t t-foreach="docs" t-as="doc">
@@ -26,7 +31,7 @@
                 <div style="page-break-before: avoid">
                   <thead>
                     <th>
-                      <span t-raw="o._name" />
+                      <span t-raw="doc_model" />
                     </th>
                     <th>
                       <span t-field="o.name" />
@@ -41,10 +46,12 @@
                       <t t-foreach="o.env['res.users'].search([])" t-as="user">
                     
                       <tr>
+
                         <td>
                           <span t-field="user.name"/>
                         </td>
                         <td>
+                        <span t-esc="doc_model"/>
                           <span><t t-if="o.sudo(user.id).check_access_rights('read', raise_exception=False)">R</t></span>
                           <span><t t-if="o.sudo(user.id).check_access_rights('write', raise_exception=False)">W</t></span>
                           <span><t t-if="o.sudo(user.id).check_access_rights('create', raise_exception=False)">C</t></span>
@@ -54,20 +61,21 @@
                           <span t-esc="', '.join([g.name for g in user.groups_id])"/>
                         </td>
 
+
                       </tr>
-                      <!-- <tr>
+
+                      <tr>
                         <td>
                           <span>Rules</span>
                         </td>
                         <td>
+                          <span t-esc="user.check_rules(doc_model,o)"/>
                           <span><t t-esc="o.sudo(user.id).check_access_rule('read')"/>R</span>
                           <span><t t-esc="o.sudo(user.id).check_access_rule('write')">W</t></span>
                           <span><t t-esc="o.sudo(user.id).check_access_rule('create')">C</t></span>
                           <span><t t-esc="o.sudo(user.id).check_access_rule('unlink')">D</t></span>
                         </td>
-                        
-
-                      </tr> -->
+                      </tr>
 
                       </t>
                   </tbody>
@@ -113,9 +121,9 @@
       <t t-if="not o or not 'company_id' in o">
         <t t-set="company" t-value="res_company" />
       </t>
-      <t t-call="l10n_se_report.compact_layout_header" />
+      <t t-call="check_access_report.compact_layout_header" />
       <t t-raw="0" />
-      <t t-call="l10n_se_report.compact_layout_footer" />
+      <t t-call="check_access_report.compact_layout_footer" />
     </template>
     
   </data>
