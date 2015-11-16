@@ -7,14 +7,14 @@
 
 
 {
-    'name': 'HR Academy',
+    'name': 'HR CV-database',
     'version': '1.0',
     'category': 'other',
-    'summary': 'Employees viewed as a academy',
+    'summary': 'Employees viewed as consultants',
     'author': 'Vertel AB',
     'website': 'http://www.vertel.se',
     'depends': ['website_hr'],
-    'data': ['website_hr_view.xml'],
+    'data': ['website_hr.xml'],
 
     'installable': True,
     'application': False,

@@ -30,8 +30,6 @@ _logger = logging.getLogger(__name__)
 class hr(models.Model):
     _inherit = 'hr.employee'
 
-    website_published = fields.Boolean('Available in the website', copy=False, default=False)
-    public_info = fields.Text('Public Info')
     chair_nbr = fields.Selection([('01','Stol nr 1'),('02','Stol nr 2'),('03','Stol nr 3'),
                                   ('04','Stol nr 4'),('05','Stol nr 5'),('06','Stol nr 6'),
                                   ('07','Stol nr 7'),('08','Stol nr 8'),('09','Stol nr 9'),
@@ -50,7 +48,7 @@ class website_hr(http.Controller):
             {'employee_ids': request.env['hr.employee'].search([('chair_nbr','not in',['None','emeritus']),('website_published','=',True)],order='chair_nbr')})
 
     @http.route(['/academy/member/<model("hr.employee"):employee>'], type='http', auth="public", website=True)
-    def chairs(self, employee,**post):
+    def chair(self, employee,**post):
         
         return request.website.render("website_hr_academy.employee_view", {'employee': employee})
         
