@@ -51,7 +51,7 @@ class website_hr(http.Controller):
     def chair(self, employee,**post):
         return request.website.render("website_hr_academy.employee_view", {'employee': request.env['hr.employee'].sudo().browse(employee.id)})
         
-    @http.route(['academy/emeritus'], type='http', auth="public", website=True)
+    @http.route(['/academy/emeritus'], type='http', auth="public", website=True)
     def emeritus(self, **post):
         return request.website.render("website_hr_academy.emeritus", 
             {'employee_ids': request.env['hr.employee'].sudo().search([('chair_nbr','=','emeritus')],order='name')})
