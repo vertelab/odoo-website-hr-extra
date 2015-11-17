@@ -49,11 +49,11 @@ class website_hr(http.Controller):
 
     @http.route(['/academy/member/<model("hr.employee"):employee>'], type='http', auth="public", website=True)
     def chair(self, employee,**post):
-        return request.website.render("website_hr_academy.employee_view", {'employee': request.env['hr.employee'].sudo().browse(employee.id)})
-        
+        return request.website.render("website_hr_academy.member", {'employee': request.env['hr.employee'].sudo().browse(employee.id)})
+
     @http.route(['/academy/emeritus'], type='http', auth="public", website=True)
     def emeritus(self, **post):
-        return request.website.render("website_hr_academy.emeritus", 
-            {'employee_ids': request.env['hr.employee'].sudo().search([('chair_nbr','=','emeritus')],order='name')})
+        return request.website.render("website_hr_academy.emeritus",
+            {'emeritus': request.env['hr.employee'].sudo().search([('chair_nbr','=','emeritus')], order='name')})
 
 

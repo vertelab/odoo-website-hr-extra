@@ -14,7 +14,7 @@
                 <div id="wrap">
                     <div class="oe_structure">
                     </div>
-                    <div class="container">
+                    <div class="container mt32 mb32">
                         <div class="row">
                             <div class="col-md-3 mb32" id="ref_left_column">
                                 <div class="col-md-12" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
@@ -51,19 +51,10 @@
                                             <li class="active"><span t-esc="reward.name"/></li>
                                         </t>
                                     </ol>
-                                    <!--<t t-call="website.pager">-->
-                                    <!--<t t-set="classname" t-value="'pull-left'"/>-->
-                                    <!--</t>-->
-                                    <!--<form action="" method="get" class="navbar-search pull-right pagination form-inline">-->
-                                    <!--<div class="form-group">-->
-                                    <!--<input type="text" name="search" class="search-query form-control"-->
-                                    <!--placeholder="Search" t-att-value="post.get('search', '')"/>-->
-                                    <!--</div>-->
-                                    <!--</form>-->
                                     <t t-foreach="rewardees" t-as="r">
                                         <div class="col-md-12">
                                             <div class="col-md-6 mt16">
-                                                <span t-field="r.partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                                                <span t-field="r.sudo().partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
                                             </div>
                                             <div class="col-md-6 mt16">
                                                 <a t-att-href="'/rewardee/%s' %r.id"><h3 t-field="r.partner_id.name"/></a>
@@ -72,36 +63,16 @@
                                                         <h4 t-field="rc.name"/>
                                                     </t>
                                                 </t>
-                                                <!--<p t-field="r.reward_year"/>-->
                                                 <p t-field="r.partner_id.rewardee_ids.comment"/>
                                             </div>
                                         </div>
                                     </t>
                                 </div>
-
-                                <!--<div class="row">-->
-
-                                <!--<p t-if="not partners">No result found</p>-->
-                                <!--<t t-foreach="partners" t-as="partner">-->
-                                <!--<div class="media">-->
-                                <!--<a class="pull-left" t-attf-href="/rewardees/#{slug(partner)}"-->
-                                <!--t-field="partner.image_small"-->
-                                <!--t-field-options='{"widget": "image", "class": "media-object"}'-->
-                                <!--></a>-->
-                                <!--<div class="media-body" style="min-height: 64px;">-->
-                                <!--<a class="media-heading" t-attf-href="/customers/#{slug(partner)}">-->
-                                <!--<span t-field="partner.display_name"/>-->
-                                <!--</a>-->
-                                <!--<div t-field="partner.website_short_description"/>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--</t>-->
-                                <!--</div>-->
                             </div>
-
                         </div>
                     </div>
-                    <div class="oe_structure"/>
+                    <div class="oe_structure">
+                    </div>
                 </div>
             </t>
         </template>
@@ -110,9 +81,8 @@
             <t t-call="website.layout">
                 <div id="wrap">
                     <div class="oe_structure">
-
                     </div>
-                    <div class="container">
+                    <div class="container mt32 mb32">
                         <div class="row">
                             <div class="col-md-3 mb32" id="ref_left_column">
                                 <div class="col-md-12" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
@@ -155,7 +125,6 @@
                                                     <h4 t-field="rc.name"/>
                                                 </t>
                                             </t>
-                                            <!--<p t-field="r.reward_year"/>-->
                                             <p t-field="rewardee.partner_id.rewardee_ids.comment"/>
                                         </div>
                                     </div>
@@ -163,7 +132,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="oe_structure"/>
+                    <div class="oe_structure">
+                    </div>
                 </div>
             </t>
         </template>
