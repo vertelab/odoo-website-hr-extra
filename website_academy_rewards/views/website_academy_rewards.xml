@@ -84,7 +84,7 @@
                     </div>
                     <div class="container mt32 mb32">
                         <div class="row">
-                            <div class="col-md-3 mb32" id="ref_left_column">
+                            <div class="col-md-3 col-sm-12 col-xs-12 mb32" id="ref_left_column">
                                 <div class="col-md-12" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         Utmärkelser
@@ -101,11 +101,11 @@
                                         <a t-att-href="'/reward/year/%s' % y"><h4 t-esc="y"/></a>
                                     </t>
                                 </div>
-                                <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
+                                <div class="col-md-12 mt32 mb32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
                                     <span>KARTA!</span>
                                 </div>
                             </div>
-                            <div class="col-md-8 col-md-offset-1" id="ref_content" style="">
+                            <div class="col-md-9 col-sm-12 col-xs-12" id="ref_content" style="">
                                 <div class='navbar mb0' style="padding: 20px; background-color: #fefefe; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         Våra Pristagare
