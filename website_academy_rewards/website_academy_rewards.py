@@ -54,7 +54,7 @@ class academy_rewardee(models.Model):  # who took prize
     def _name_(self):
         self.name = '%s - %s' % (self.reward_id.name, self.reward_year)
 
-    name = fields.Char(compute='_name_', string='Name', store=True)
+    name = fields.Char(compute='_name_', string='Name')
     reward_year = fields.Integer(string='Year')
     sequence_rewardee = fields.Integer(string='Sequence')
     partner_id = fields.Many2one(comodel_name='res.partner', string='Winner')
@@ -68,7 +68,7 @@ class academy_rewardee(models.Model):  # who took prize
 class res_partner(models.Model):
     _inherit = "res.partner"
 
-    rewardee_ids = fields.One2many(comodel_name='academy.rewardee', inverse_name='partner_id', string='Rewardee')
+    rewardee_ids = fields.One2many(comodel_name='academy.rewardee', inverse_name='partner_id', string='Prize')
 
 
 class WebsiteRewardees(http.Controller):
@@ -88,7 +88,7 @@ class WebsiteRewardees(http.Controller):
     @http.route(['/rewardee/<model("academy.rewardee"):rewardee>'], type='http', auth="public", website=True)
     def rewardee(self, page=0, year=0, rewardee=None, **post):
         rewards = request.env['academy.reward'].sudo().search([], order='sequence_reward')
-        return request.website.render("website_academy_rewards.index_rewardee", {'rewards': rewards, 'rewardee': rewardee,})
+        return request.website.render("website_academy_rewards.index_rewardee", {'rewards': rewards, 'rewardee': request.env['academy.rewardee'].sudo().browse(rewardee.sudo().id),})
 
 
 

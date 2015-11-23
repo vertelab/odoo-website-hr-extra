@@ -36,6 +36,7 @@ Acacemy Rewards
     ],
     'data': [
         'views/website_academy_rewards.xml',
+        'security/ir.model.access.csv',
     ],
     'qweb': [],
     'installable': True,

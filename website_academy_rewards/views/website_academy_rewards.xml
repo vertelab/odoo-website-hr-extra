@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8 col-md-offset-1" id="ref_content" style="">
-                                <div class='navbar mb0' style="padding: 20px; background-color: #fefefe; border: 1px solid #369;">
+                                <div class="navbar mb0" style="padding: 20px; background-color: #fefefe; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         Våra Pristagare
                                     </h1>
@@ -57,7 +57,7 @@
                                                 <span t-field="r.sudo().partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
                                             </div>
                                             <div class="col-md-6 mt16">
-                                                <a t-att-href="'/rewardee/%s' %r.id"><h3 t-field="r.partner_id.name"/></a>
+                                                <a t-att-href="'/rewardee/%s' % r.id"><h3 t-field="r.partner_id.name"/></a>
                                                 <t t-if="r.partner_id.child_ids">
                                                     <t t-foreach="r.partner_id.child_ids" t-as="rc">
                                                         <h4 t-field="rc.name"/>
@@ -90,7 +90,7 @@
                                         Utmärkelser
                                     </h1>
                                     <t t-foreach="rewards" t-as="r">
-                                        <a t-att-href="'/reward/%s' %r.id"><h4 t-field="r.name"/></a>
+                                        <a t-att-href="'/reward/%s' % r.id"><h4 t-field="r.name"/></a>
                                     </t>
                                 </div>
                                 <div class="col-md-12 mt32" style="padding: 20px; background-color: #eee; border: 1px solid #369;">
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                             <div class="col-md-9 col-sm-12 col-xs-12" id="ref_content" style="">
-                                <div class='navbar mb0' style="padding: 20px; background-color: #fefefe; border: 1px solid #369;">
+                                <div class="navbar mb0" style="padding: 20px; background-color: #fefefe; border: 1px solid #369;">
                                     <h1 class="text-center">
                                         Våra Pristagare
                                     </h1>
