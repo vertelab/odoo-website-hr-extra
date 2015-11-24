@@ -78,7 +78,7 @@ class WebsiteRewardees(http.Controller):
     def rewardees(self, page=0, year=None, reward=None, **post):
         rewards = request.env['academy.reward'].sudo().search([], order='sequence_reward')
         if reward:
-            rewardees = request.env['academy.rewardee'].sudo().search([('reward_id', '=', reward.id)], order='sequence_rewardee')
+            rewardees = request.env['academy.rewardee'].sudo().search([('reward_id', '=', reward.id)], order='reward_year desc')
         elif year:
             rewardees = request.env['academy.rewardee'].sudo().search([('reward_year', '=', year)], order='sequence_rewardee')
         else:
