@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-
+from cStringIO import StringIO
 from openerp import models, fields, api, _
 from openerp import SUPERUSER_ID
-from openerp.addons.web import http, openerp
+from openerp import http
 from openerp.addons.website.models.website import unslug
 from openerp.tools.translate import _
 from openerp.http import request
@@ -90,6 +90,9 @@ class WebsiteRewardees(http.Controller):
         rewards = request.env['academy.reward'].sudo().search([], order='sequence_reward')
         return request.website.render("website_academy_rewards.index_rewardee", {'rewards': rewards, 'rewardee': request.env['academy.rewardee'].sudo().browse(rewardee.sudo().id),})
 
+    @http.route(['/attachment/<model("ir.attachment"):attachment>/<string:file_name>'], type='http', auth="public", website=True)
+    def get_attachment(self, attachment=None, file_name=None, **post):
+        return http.send_file(StringIO(attachment.datas.decode('base64')), filename=attachment.datas_fname, mimetype=attachment.mimetype, mtime=attachment.write_date, as_attachment=True)
 
 
 #     @http.route([
