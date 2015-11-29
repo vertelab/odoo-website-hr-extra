@@ -125,7 +125,6 @@
                         </div>
                     <div class="oe_structure"></div>
                 </div>
-                <xpath expr="//body" position="inside">
                     <script>
                         var locations = [
 
@@ -147,6 +146,7 @@
 
                        for (i = 0; i &lt; locations.length; i++) {
                          marker = new google.maps.Marker({
+                            content: locations[i][0],
                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                            map: map
                          });
@@ -159,7 +159,6 @@
                          })(marker, i));
                        }
                     </script>
-                </xpath>
             </t>
         </template>
 
@@ -205,7 +204,7 @@
                                 <div class="col-md-12" style="margin-top: 10px; padding: 0px;">
                                     <section id="google-map">
                                         <div class="container box outer-clear" style="width: 100%; margin: auto; padding: 0px;">
-                                            <div class="col-md-12 inner-clear" id="map-container" style="height: 275px;"/></div>
+                                            <div class="col-md-12 inner-clear" id="map-google" style="height: 275px;"/></div>
                                     </section>
                                 </div>
                             </div>
@@ -260,9 +259,8 @@
                     </div>
                     <div class="oe_structure"></div>
                 </div>
-                <xpath expr="//body" position="inside">
                     <script>
-                                var locations = [
+                        var locations = [
 
 
                         <t t-if="rewardee.partner_id.is_company">
@@ -285,6 +283,7 @@
 
                                for (i = 0; i &lt; locations.length; i++) {
                                  marker = new google.maps.Marker({
+                                    content: locations[i][0],
                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                                    map: map
                                  });
@@ -298,7 +297,6 @@
                                }
 
                     </script>
-                </xpath>
             </t>
         </template>
 
