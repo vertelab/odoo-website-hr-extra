@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <!-- hr single view -->
+        <record id="im_hr_single" model="image.recipe">
+            <field name="name">single_resize</field>
+            <field name="recipe">image.transform(resize=width+'x'+height+'>')</field>
+        </record>
+
+        <record id="im_hr_single_param_one" model="image.recipe.param">
+            <field name="name">width</field>
+            <field name="value">300</field>
+            <field name="recipe_id" ref="im_hr_single"/>
+        </record>
+
+        <record id="im_hr_single_param_two" model="image.recipe.param">
+            <field name="name">height</field>
+            <field name="value">300</field>
+            <field name="recipe_id" ref="im_hr_single"/>
+        </record>
+    <!-- end of hr single view -->
+
+    </data>
+</openerp>

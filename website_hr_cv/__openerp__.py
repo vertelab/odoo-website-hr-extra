@@ -13,8 +13,8 @@
     'summary': 'Employees viewed as consultants',
     'author': 'Vertel AB',
     'website': 'http://www.vertel.se',
-    'depends': ['website_hr'],
-    'data': ['website_hr.xml'],
+    'depends': ['website_hr', 'website_imagemagick', 'website'],
+    'data': ['website_hr.xml', 'website_hr_data.xml'],
 
     'installable': True,
     'application': False,
