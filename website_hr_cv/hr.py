@@ -56,7 +56,8 @@ class hr_assignment(models.Model):
 class hr_skill(models.Model):
     _name="hr.skill"
     categ_id = fields.Many2one(comodel_name='crm.case.categ')
-    level = fields.Selection([('1','1 - 3 year'),('open','Open'),('pending','Pending'),('cancel','Cancelled'),('done','Done')], string='State', required=False)
+    employee_id = fields.Many2one(comodel_name='hr.employee', string='Employee')
+    level = fields.Selection([('1','1 - 3 year'),('2','3 - 5 year'),('3','5 - more years')], string='Level', required=False)
     
 class hr_location(models.Model):
     _name="hr.location"
