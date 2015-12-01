@@ -19,11 +19,47 @@
 ##############################################################################
 
 from openerp import models, fields, api, _
+
 from openerp.exceptions import Warning
 import logging
 from openerp import http
 from openerp.http import request
 _logger = logging.getLogger(__name__)
+
+
+class crm_lead(models.Model):
+    """ CRM Lead Case """
+    _inherit = "crm.lead"
+
+    website_published = fields.Boolean('Published')
+    public_info = fields.Text('Public info',translate=True)
+    public_client = fields.Char('Public CLient')
+    location = fields.Many2one(comodel_name='hr.location')
+    duration = fields.Integer()
+    duration_uom = field.Many2one(comodel_name='product.oum')
+    work_load = fields.Integer('Workload in %',help="for example 100% or 50%")
+    start_date = fields.Date()
+    language_skills = fields.Many2one(comodel_name='hr.language')
+    skill_ids = fields.Many2many()
+    
+class lead_skill(models.Model):
+    _name="crm.lead.skill"
+    categ_id = fields.Many2one(comodel_name='crm.case.categ')
+    employee_id = fields.Many2one(comodel_name='hr.employee', string='Employee')
+    level = fields.Selection([('1','1 - 3 year'),('2','3 - 5 year'),('3','5 - more years')], string='Level', required=False)
+    prio = fields.Selection([('0','Required'),('1','High'),('2','Medium'),('3','Not required')], string='Prio', required=False)
+    
+class hr(osv.osv):
+    _inherit = 'hr.employee'
+    _columns = {
+        'website_published': fields.boolean('Available in the website', copy=False),
+        'public_info': fields.text('Public Info'),
+    }
+    _defaults = {
+        'website_published': False
+    }
+
+
 
 class hr_employee(models.Model):
     _inherit = 'hr.employee'
@@ -48,24 +84,15 @@ class hr_assignment(models.Model):
     description = fields.Html(string='Description')
     sequence = fields.Integer(string='Sequence')
     published = fields.Boolean(string='Published')
-    location_ids = fields.Many2many(comodel_name='hr.location', string='Places')
+    place_ids = fields.Many2many(comodel_name='hr.place', string='Places')
     date_from = fields.Date()
     date_to   = fields.Date()
-    language_ids = fields.Many2many(comodel_name='hr.language')
     
-class hr_skill(models.Model):
-    _name="hr.skill"
-    categ_id = fields.Many2one(comodel_name='crm.case.categ')
-    level = fields.Selection([('1','1 - 3 year'),('open','Open'),('pending','Pending'),('cancel','Cancelled'),('done','Done')], string='State', required=False)
     
-class hr_location(models.Model):
-    _name="hr.location"
+class hr_place(models.Model):
+    _name="hr.place"
     name = fields.Char(string='name', translate=True)
-
-class hr_language(models.Model):
-    _name="hr.language"
-    name = fields.Char(string='name', translate=True)
-
+    
 
 class website_hr(http.Controller):
 
@@ -77,3 +104,4 @@ class website_hr(http.Controller):
     @http.route(['/consultant/<model("hr.employee"):employee>'], type='http', auth="public", website=True)
     def consultant(self, employee,**post):
         return request.website.render("website_hr_cv.employee_view", {'employee': request.env['hr.employee'].sudo().browse(employee.id)})
+

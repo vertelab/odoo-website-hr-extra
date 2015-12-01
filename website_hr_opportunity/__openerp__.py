@@ -7,13 +7,13 @@
 
 
 {
-    'name': 'HR CV-database',
+    'name': 'HR Opportunity-database',
     'version': '1.0',
-    'category': 'other',
-    'summary': 'Employees viewed as consultants',
+    'category': 'sale',
+    'summary': 'Opportunities viewed as consultant assignments',
     'author': 'Vertel AB',
     'website': 'http://www.vertel.se',
-    'depends': ['website_hr', 'website_imagemagick', 'crm'],
+    'depends': ['crm', 'website_hr_cv',],
     'data': ['website_hr.xml', 'website_hr_data.xml'],
 
     'installable': True,
