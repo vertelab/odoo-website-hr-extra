@@ -82,31 +82,23 @@
                                                     <li><t t-esc="employee.work_location"/></li>
                                                     <li><t t-esc="','.join([c.name for c in employee.all_categ_ids])"/></li>
                                                 </ul>
-                                                <div t-field="employee.public_info" class="mt16"/>
+                                                <p t-field="employee.public_info" class="mt16 cv-content"/>
                                             </div>
                                         </div>
                                         <div class="col-md-12 oe_dark cv-block">
                                             <h4 class="block-label">Skills &amp; Educations</h4>
-                                            <table>
+                                            <table class="table table-responsive mt16" style="max-width: 880px; margin: auto;">
                                                 <thead>
                                                     <tr>
-                                                        <th>
-                                                            <span>Skill</span>
-                                                        </th>
-                                                        <th>
-                                                            <span>Level</span>
-                                                        </th>
+                                                        <th>Skill</th>
+                                                        <th>Level</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <t t-foreach="employee.skill_ids" t-as="s">
-                                                            <td>
-                                                                <span t-field="s.categ_id.name"/>
-                                                            </td>
-                                                            <td>
-                                                                <span t-field="s.level"/>
-                                                            </td>
+                                                            <td><span t-field="s.categ_id.name"/></td>
+                                                            <td><span t-field="s.level"/></td>
                                                         </t>
                                                     </tr>
                                                 </tbody>
