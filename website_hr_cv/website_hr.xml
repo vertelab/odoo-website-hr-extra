@@ -278,6 +278,27 @@
                                 <field name="client"/>
                                 <field name="categ_ids"/>
                             </tree>
+                            <form string="Assignment">
+                                <sheet string="Assignment">
+                                    <h1>
+                                        <field name="name" placeholder="Assignment..." class="oe_inline"/>
+                                    </h1>
+                                    <group>
+                                        <field name="published" string="Published"/>
+                                    </group>
+                                    <group>
+                                        <field name="client"/>
+                                    </group>
+                                    <group>
+                                        <field name="categ_ids" string="Tags" widget="many2many_tags"/>
+                                        <field name="date_from"/>
+                                        <field name="date_to"/>
+                                    </group>
+                                    <group>
+                                        <field name="description" string="Description"/>
+                                    </group>
+                                </sheet>
+                            </form>
                         </field>
                     </page>
                     <page string="Skills">
@@ -293,36 +314,16 @@
         </record>
 
         <!-- assignment form view -->
+<!--
         <record id="hr_assignment_form_view" model="ir.ui.view">
             <field name="name">hr.assignment.form</field>
             <field name="model">hr.assignment</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Assignment">
-                    <sheet string="Assignment">
-                        <h1>
-                            <field name="name" placeholder="Assignment..." class="oe_inline"/>
-                        </h1>
-                        <group>
-                            <field name="published" string="Published"/>
-                            <field name="sequence" string="Sequence"/>
-                        </group>
-                        <group>
-                            <field name="employee_id"/>
-                            <field name="client"/>
-                        </group>
-                        <group>
-                            <field name="categ_ids" string="Tags" widget="many2many_tags"/>
-                            <field name="date_from"/>
-                            <field name="date_to"/>
-                        </group>
-                        <group>
-                            <field name="description" string="Description"/>
-                        </group>
-                    </sheet>
-                </form>
+
             </field>
         </record>
+-->
 
 <!--
         <record id="view_all_assignments" model="ir.actions.act_window">
