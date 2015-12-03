@@ -95,11 +95,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <t t-foreach="employee.skill_ids" t-as="s">
-                                                            <td><span t-field="s.categ_id.name"/></td>
-                                                            <td><span t-field="s.level"/></td>
-                                                        </t>
+                                                    <tr t-foreach="employee.skill_ids" t-as="s">
+                                                        <td><span t-field="s.categ_id.name"/></td>
+                                                        <td><span t-field="s.level"/></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -266,7 +264,7 @@
                         <field name="public_info"/>
                     </group>
                     <group>
-                        <field name="all_categ_ids" string="All Tags" widget="many2many_tags"/>
+                        <field name="all_categ_ids" widget="many2many_tags"/>
                     </group>
                 </field>
                 <notebook position="inside">
