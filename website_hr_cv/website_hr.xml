@@ -262,6 +262,7 @@
                         <field name="education"/>
                     </group>
                     <group>
+                        <field name="website_published"/>
                         <field name="public_info"/>
                     </group>
                     <group>
