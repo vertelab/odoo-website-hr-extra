@@ -80,7 +80,7 @@
                                                     <li><t t-esc="employee.work_email"/></li>
                                                     <li><t t-esc="employee.mobile_phone"/></li>
                                                     <li><t t-esc="employee.work_location"/></li>
-                                                    <li><t t-esc="','.join([c.name for c in employee.all_categ_ids])"/></li>
+                                                    <li><t t-esc="', '.join([c.name for c in employee.all_categ_ids])"/></li>
                                                 </ul>
                                                 <p t-field="employee.public_info" class="mt16 cv-content"/>
                                             </div>

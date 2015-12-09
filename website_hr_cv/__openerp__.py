@@ -14,7 +14,7 @@
     'author': 'Vertel AB',
     'website': 'http://www.vertel.se',
     'depends': ['website_hr', 'website_imagemagick', 'crm'],
-    'data': ['website_hr.xml', 'website_hr_data.xml'],
+    'data': ['website_hr.xml', 'website_hr_data.xml', 'security/ir.model.access.csv'],
 
     'installable': True,
     'application': False,
