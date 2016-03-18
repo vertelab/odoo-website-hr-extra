@@ -60,7 +60,7 @@ class hr_skill(models.Model):
 
     categ_id = fields.Many2one(comodel_name='crm.case.categ')
     employee_id = fields.Many2one(comodel_name='hr.employee', string='Employee')
-    level = fields.Selection([('1','1 - 3 year'),('2','3 - 5 year'),('3','5 - more years')], string='Level', required=False)
+    level = fields.Selection([('1','< 1 year'),('2','1 - 3 years'),('3','3 - 5 years'),('4','> 5 years')], string='Level', required=False)
 
 class hr_location(models.Model):
     _name='hr.location'
