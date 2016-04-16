@@ -242,6 +242,17 @@
                                                     <t t-esc="rewardee.partner_id.rewardee_ids.comment"/>
                                                     <i class="fa fa-quote-right" style="margin-left: 10px; color: #fa0;"/>
                                                 </p>
+                                                <ul>
+                                                    <li>
+                                                        <i class="fa fa-home" style="margin-right: 10px; color: #fa0;"/><span t-field="rewardee.partner_id.street"/>, <span t-field="rewardee.partner_id.zip"/> <span t-field="rewardee.partner_id.city"/>
+                                                    </li>
+                                                    <li><i class="fa fa-internet-explorer" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.website"/></li>
+                                                    <li><i class="fa fa-user" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.function"/></li>
+                                                    <li><i class="fa fa-phone" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.phone"/></li>
+                                                    <li><i class="fa fa-mobile" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.mobile"/></li>
+                                                    <li><i class="fa fa-fax" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.fax"/></li>
+                                                    <li><i class="fa fa-envelope-o" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.email"/></li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -521,6 +532,18 @@
                         <!--<field name="sequence_rewardee" widget="handle"/>-->
                     </field>
                 </tree>
+            </field>
+        </record>
+
+        <!-- blog post form view  -->
+        <record model="ir.ui.view" id="view_blog_post_form">
+            <field name="name">blog.post.form</field>
+            <field name="model">blog.post</field>
+            <field name="inherit_id" ref="website_blog.view_blog_post_form"/>
+            <field name="arch" type="xml">
+                <field name="blog_id" position="after">
+                    <field name="partner_ids" widget="many2many_tags"/>
+                </field>
             </field>
         </record>
 

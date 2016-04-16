@@ -68,7 +68,14 @@ class academy_rewardee(models.Model):  # who took prize
 class res_partner(models.Model):
     _inherit = "res.partner"
 
-    rewardee_ids = fields.One2many(comodel_name='academy.rewardee', inverse_name='partner_id', string='Prize')
+    rewardee_ids = fields.One2many(comodel_name='academy.rewardee', inverse_name='partner_id', string='Rewardee')
+    press_id = fields.Many2one(comodel_name='blog.post', string='Press')
+
+
+class BlogPost(models.Model):
+    _inherit = "blog.post"
+
+    partner_ids = fields.One2many(comodel_name='res.partner', inverse_name='press_id', string='Rewardee')
 
 
 class WebsiteRewardees(http.Controller):

@@ -33,6 +33,7 @@ Acacemy Rewards
         'website',
         'website_google_map',
         'website_imagemagick',
+        'website_blog',
     ],
     'data': [
         'views/website_academy_rewards.xml',
