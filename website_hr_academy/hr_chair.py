@@ -59,9 +59,10 @@ class website_hr(http.Controller):
     @http.route(['/academy/member/<model("hr.employee"):employee>/update'], type='http', auth="public", website=True)
     def update(self, employee,**post):
         if request.httprequest.method == 'POST':
-            employee.write({
+            employee.sudo().write({
                 'public_info': post.get('public_info'),
             })
+            return request.website.render("website_hr_academy.member", {'employee': request.env['hr.employee'].sudo().browse(employee.id)})
         return request.website.render("website_hr_academy.update_member", {'employee': request.env['hr.employee'].sudo().browse(employee.id)})
 
 
