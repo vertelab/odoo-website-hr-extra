@@ -132,6 +132,48 @@
             </t>
         </template>
 
+        <template id="update_member" name="Update Member" page="True">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                    </div>
+                    <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
+                        <div class="col-md-12 col-sm-12 mt16 colsize" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
+                            <section class="s_image_floating">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="member-header text-center">
+                                                <h2><strong t-field="employee.name"/></h2>
+                                            </div>
+                                            <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
+                                                <div class="o_container">
+                                                    <img t-att-src="website.imagemagick_url(employee, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow mt16"/>
+                                                </div>
+                                            </div>
+                                            <div class="member-body">
+                                                <form class="mt32" method="post">
+                                                    <textarea name="public_info" style="width: 560px; height: 400px;"><t t-esc="employee.public_info"/></textarea>
+                                                    <div><input type="submit" class="btn btn-success" value="Spara"/></div>
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <div class="member-footer mt8">
+                                                <t t-esc="employee.work_email"/><br/>
+                                                Stol: <t t-esc="employee.chair_nbr"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="oe_structure">
+                    </div>
+                </div>
+            </t>
+        </template>
+
 
         <!-- Update employee form -->
         <record id="view_employee_form" model="ir.ui.view">

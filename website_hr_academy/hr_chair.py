@@ -56,4 +56,12 @@ class website_hr(http.Controller):
         return request.website.render("website_hr_academy.emeritus",
             {'emeritus': request.env['hr.employee'].sudo().search([('chair_nbr','=','emeritus')], order='name')})
 
+    @http.route(['/academy/member/<model("hr.employee"):employee>/update'], type='http', auth="public", website=True)
+    def update(self, employee,**post):
+        if request.httprequest.method == 'POST':
+            employee.write({
+                'public_info': post.get('public_info'),
+            })
+        return request.website.render("website_hr_academy.update_member", {'employee': request.env['hr.employee'].sudo().browse(employee.id)})
+
 
