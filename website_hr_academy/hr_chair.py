@@ -36,8 +36,8 @@ class hr_employee(models.Model):
                                   ('04','Stol nr 4'),('05','Stol nr 5'),('06','Stol nr 6'),
                                   ('07','Stol nr 7'),('08','Stol nr 8'),('09','Stol nr 9'),
                                   ('10','Stol nr 10'),('11','Stol nr 11'),('12','Stol nr 12'),
-                                  ('13','Stol nr 13'),('14','Stol nr 14'),
-                                  ('none','None'),('emeritus','Emeritus')],string='Chair')
+                                  ('13','Stol nr 13'),('14','Stol nr 14'),('none','None'),
+                                  ('emeritus','Emeritus'),('adjungerad','Adjungerad')],string='Chair')
 
 
 class website_hr(http.Controller):
