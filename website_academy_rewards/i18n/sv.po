@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* website_academy_rewards
+#   * website_academy_rewards
 #
 msgid ""
 msgstr ""
@@ -88,7 +88,7 @@ msgstr "Implemented By"
 #. module: website_academy_rewards
 #: field:academy.rewardee,comment:0
 msgid "Justification"
-msgstr "Motivation"
+msgstr "Motivering"
 
 #. module: website_academy_rewards
 #: field:academy.reward,__last_update:0 field:academy.rewardee,__last_update:0
