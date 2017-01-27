@@ -237,9 +237,9 @@
                                                         </li>
                                                     </ul>
                                                 </t>
-                                                <p t-if="rewardee.partner_id.rewardee_ids.comment">
+                                                <p t-if="rewardee.partner_id.rewardee_ids[0].comment">
                                                     <i class="fa fa-quote-left" style="margin-right: 10px; color: #fa0;"/>
-                                                    <t t-esc="rewardee.partner_id.rewardee_ids.comment"/>
+                                                    <t t-esc="rewardee.partner_id.rewardee_ids[0].comment"/>
                                                     <i class="fa fa-quote-right" style="margin-left: 10px; color: #fa0;"/>
                                                 </p>
                                                 <ul>
