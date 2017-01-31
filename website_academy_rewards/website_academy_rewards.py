@@ -49,7 +49,7 @@ class academy_reward(models.Model):  # prize
 
 class academy_rewardee(models.Model):  # who took prize
     _name = "academy.rewardee"
-    _order = "reward_year desc, sequence_rewardee"
+    _order = "reward_year desc, sequence_rewardee desc"
 
     @api.one
     def _name_(self):
@@ -84,13 +84,13 @@ class WebsiteRewardees(http.Controller):
 
     @http.route(['/rewardees', '/reward/<model("academy.reward"):reward>', '/reward/year/<int:year>'], type='http', auth="public", website=True)
     def rewardees(self, page=0, year=None, reward=None, **post):
-        rewards = request.env['academy.reward'].sudo().search([], order='sequence_reward')
+        rewards = request.env['academy.reward'].sudo().search([], order='sequence_reward desc')
         if year:
-            rewardees = request.env['academy.rewardee'].sudo().search([('reward_year', '=', year)], order='reward_year desc')
+            rewardees = request.env['academy.rewardee'].sudo().search([('reward_year', '=', year)], order='reward_year desc, sequence_rewardee desc')
         elif reward:
-            rewardees = request.env['academy.rewardee'].sudo().search([('reward_id', '=', reward.id)], order='sequence_rewardee desc')
+            rewardees = request.env['academy.rewardee'].sudo().search([('reward_id', '=', reward.id)], order='reward_year desc, sequence_rewardee desc')
         else:
-            rewardees = request.env['academy.rewardee'].sudo().search([], order='sequence_rewardee desc')
+            rewardees = request.env['academy.rewardee'].sudo().search([], order='reward_year desc, sequence_rewardee desc')
         return request.website.render("website_academy_rewards.index_rewardees", {'reward': reward, 'rewards': rewards, 'rewardees': rewardees, 'year': year})
 
     @http.route(['/rewardee/<model("academy.rewardee"):rewardee>'], type='http', auth="public", website=True)
