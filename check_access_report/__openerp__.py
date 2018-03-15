@@ -25,6 +25,7 @@
 'category': 'Tools',
 'description': """Record for permissions""",
 'author': 'Vertel AB',
+    'license': 'AGPL-3',
 'website': 'http://www.vertel.se',
 'depends': ['base'],
 'data': ['check_access_report.xml'],

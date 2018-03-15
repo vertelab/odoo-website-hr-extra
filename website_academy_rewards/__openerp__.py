@@ -29,6 +29,7 @@ Acacemy Rewards
 ===========================
 """,
     'author': 'Vertel AB',
+    'license': 'AGPL-3',
     'depends': [
         'website',
         'website_google_map',
