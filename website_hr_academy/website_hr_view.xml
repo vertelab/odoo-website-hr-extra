@@ -183,6 +183,7 @@
         <field name="arch" type="xml">
             <field name="work_location" position="after">
                 <field name="chair_nbr"/>
+                <field name="emeritus_year"/>
                 <field name="website_published"/>
                 <field name="public_info" colspan="6"/>
             </field>

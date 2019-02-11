@@ -38,6 +38,7 @@ class hr_employee(models.Model):
                                   ('10','Stol nr 10'),('11','Stol nr 11'),('12','Stol nr 12'),
                                   ('13','Stol nr 13'),('14','Stol nr 14'),('none','None'),
                                   ('emeritus','Emeritus'),('adjungerad','Adjungerad')],string='Chair')
+    emeritus_year = fields.Integer(string='Emeritus Year', help='The year became emeritus')
 
 
 class website_hr(http.Controller):
@@ -54,7 +55,7 @@ class website_hr(http.Controller):
     @http.route(['/academy/emeritus'], type='http', auth="public", website=True)
     def emeritus(self, **post):
         return request.website.render("website_hr_academy.emeritus",
-            {'emeritus': request.env['hr.employee'].sudo().search([('chair_nbr','=','emeritus')], order='name')})
+            {'emeritus': request.env['hr.employee'].sudo().search([('chair_nbr','=','emeritus')], order='emeritus_year desc')})
 
     @http.route(['/academy/member/<model("hr.employee"):employee>/update'], type='http', auth="public", website=True)
     def update(self, employee,**post):
