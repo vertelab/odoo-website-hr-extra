@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+    
         <!-- Page -->
 
         <!--<template id="aboutus" inherit_id="website.aboutus" customize_show="True" name="Our Team">-->
@@ -23,7 +22,7 @@
             <!--</xpath>-->
         <!--</template>-->
 
-        <template id="chairs" name="Our Academy Members">
+        <data id="chairs" name="Our Academy Members">
             <t t-call="website.layout">
                 <div id="wrap">
                     <div class="oe_structure">
@@ -48,9 +47,9 @@
                     </div>
                 </div>
             </t>
-        </template>
+        </data>
 
-        <template id="member" name="Academy Member" page="True">
+        <data id="member" name="Academy Member" page="True">
             <t t-call="website.layout">
                 <div id="wrap">
                     <div class="oe_structure">
@@ -92,7 +91,7 @@
                     </div>
                 </div>
             </t>
-        </template>
+        </data>
 
         <template id="emeritus" name="Academy Emeritus" page="True">
             <t t-call="website.layout">
@@ -191,5 +190,3 @@
 
         </record>
 
-    </data>
-</openerp>

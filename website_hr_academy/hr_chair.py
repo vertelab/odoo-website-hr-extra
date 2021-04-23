@@ -18,13 +18,13 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, _
-import openerp.tools
+from odoo import models, fields, api, _
+import odoo.tools
 import xmlrpclib
-from openerp.exceptions import Warning
+from odoo.exceptions import Warning
 import os, string
-from openerp import http
-from openerp.http import request
+from odoo import http
+from odoo.http import request
 import logging
 _logger = logging.getLogger(__name__)
 

@@ -14,7 +14,7 @@
     'author': 'Vertel AB',
     'license': 'AGPL-3',
     'website': 'http://www.vertel.se',
-    'depends': ['website_hr', 'website_imagemagick', 'crm'],
+    'depends': ['website_hr_recruitment', 'website_imagemagick', 'crm'],
     'data': ['website_hr.xml', 'website_hr_data.xml', 'security/ir.model.access.csv'],
 
     'installable': True,
