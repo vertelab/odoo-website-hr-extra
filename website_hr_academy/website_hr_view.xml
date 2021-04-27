@@ -1,181 +1,184 @@
-<?xml version="1.0" encoding="utf-8"?>
-    
-        <!-- Page -->
+<odoo>
 
-        <!--<template id="aboutus" inherit_id="website.aboutus" customize_show="True" name="Our Team">-->
-            <!--<xpath expr="//div[@class='oe_structure']" position="after">-->
-                <!--<section class="container">-->
-                    <!--<div class="col-sm-12 text-center" t-if="len(employee_ids)">-->
-                        <!--<h2>Our Team</h2>-->
-                    <!--</div>-->
-                    <!--<div t-foreach="employee_ids" t-as="employee" class="col-sm-3 col-lg-2 mt16 text-center colsize">-->
-                        <!--<t t-call="website.publish_management"><t t-set="object" t-value="employee"/></t>-->
-                        <!--<div class="clearfix"/>-->
-                        <!--<img t-att-src="website.image_url(employee, 'image_medium')" class="img shadow img-rounded"/>-->
-                        <!--<div class="mt8">-->
-                            <!--<strong t-field="employee.name"></strong>-->
-                        <!--</div>-->
-                        <!--<div t-field="employee.job_id"/>-->
-                        <!--<div t-field="employee.public_info" class="text-muted mt16"/>-->
-                    <!--</div>-->
-                <!--</section>-->
-            <!--</xpath>-->
-        <!--</template>-->
-
-        <data id="chairs" name="Our Academy Members">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure">
-                    </div>
-                    <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
-                        <div class="col-md-12 col-sm-12"  style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
-                            <div class="col-sm-12 text-center" t-if="len(employee_ids)">
-                                <h2>De 14 ledamöterna</h2>
-                            </div>
-                            <div t-foreach="employee_ids" t-as="employee" class="col-sm-3 col-lg-2 mt16 text-center colsize">
-                                <t t-call="website.publish_management"><t t-set="object" t-value="employee"/></t>
-                                <div class="clearfix"/>
-                                <a t-att-href="'/academy/member/%s' % employee.id"><img t-att-src="website.image_url(employee, 'image_medium')" class="img shadow img-rounded"/></a>
-                                <div class="mt8">
-                                    <a t-att-href="'/academy/member/%s' % employee.id"><strong t-field="employee.name"/></a>
-                                </div>
-                            </div>
-                            <hr/>
+    <!-- <t id="chairs_members" name="Our Academy Members">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                </div>
+                <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
+                    <div class="col-md-12 col-sm-12" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
+                        <div class="col-sm-12 text-center" t-if="len(employee_ids)">
+                            <h2>De 14 ledamöterna</h2>
                         </div>
-                    </div>
-                    <div class="oe_structure">
+                        <div t-foreach="employee_ids" t-as="employee" class="col-sm-3 col-lg-2 mt16 text-center colsize">
+                            <t t-call="website.publish_management">
+                                <t t-set="object" t-value="employee"/>
+                            </t>
+                            <div class="clearfix"/>
+                            <a t-att-href="'/academy/member/%s' % employee.id">
+                                <img t-att-src="website.image_url(employee, 'image_medium')" class="img shadow img-rounded"/>
+                            </a>
+                            <div class="mt8">
+                                <a t-att-href="'/academy/member/%s' % employee.id">
+                                    <strong t-field="employee.name"/>
+                                </a>
+                            </div>
+                        </div>
+                        <hr/>
                     </div>
                 </div>
-            </t>
-        </data>
+                <div class="oe_structure">
+                </div>
+            </div>
+        </t>
+    </t> -->
 
-        <data id="member" name="Academy Member" page="True">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure">
+    <!-- <t id="chair" name="Academy Member" page="True">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                </div>
+                <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
+                    <div class="col-md-12 col-sm-12 mt16 colsize" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="/academy/chairs">De 14 ledamöterna</a>
+                            </li>
+                            <li class="active">
+                                <span t-field="employee.name"/>
+                            </li>
+                        </ol>
+                        <section class="s_image_floating">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="member-header text-center">
+                                            <h2>
+                                                <strong t-field="employee.name"/>
+                                            </h2>
+                                            <t t-call="website.publish_management">
+                                                <t t-set="object" t-value="employee"/>
+                                            </t>
+                                        </div>
+                                        <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
+                                            <div class="o_container">
+                                                <img t-att-src="website.imagemagick_url(employee, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow mt16"/>
+                                            </div>
+                                        </div>
+                                        <div class="member-body">
+                                            <p style="text-align: justify;" t-field="employee.public_info" class="mt16"/>
+                                        </div>
+                                        <br/>
+                                        <div class="member-footer mt8">
+                                            <t t-esc="employee.work_email"/>
+                                            <br/>
+                                                Stol: <t t-esc="employee.chair_nbr"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
-                        <div class="col-md-12 col-sm-12 mt16 colsize" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
-                            <ol class="breadcrumb">
-                                <li><a href="/academy/chairs">De 14 ledamöterna</a></li>
-                                <li class="active"><span t-field="employee.name"/></li>
-                            </ol>
-                            <section class="s_image_floating">
-                                <div class="container">
+                </div>
+                <div class="oe_structure">
+                </div>
+            </div>
+        </t>
+    </t>
+
+    <t id="emeritus" name="Academy Emeritus" page="True">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                </div>
+                <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
+                    <div class="col-md-12 col-sm-12" style="border: 1px solid #369; background-color: #fefefe; padding: 0px;">
+                        <section class="s_image_floating">
+                            <div class="col-md-12 col-sm-12 text-center" t-if="len(emeritus)">
+                                <h2>Seniorledamöter</h2>
+                            </div>
+                            <div class="container">
+                                <div t-foreach="emeritus" t-as="emeritus" class="col-md-12 col-sm-12 mt32 mb32">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="member-header text-center">
-                                                <h2><strong t-field="employee.name"/></h2>
-                                                <t t-call="website.publish_management"><t t-set="object" t-value="employee"/></t>
-                                            </div>
                                             <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
-                                                <div class="o_container">
-                                                    <img t-att-src="website.imagemagick_url(employee, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow mt16"/>
+                                                <div class="o_container text-center">
+                                                    <img t-att-src="website.imagemagick_url(emeritus, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow"/>
+                                                    <h4>
+                                                        <strong t-field="emeritus.name"/>
+                                                    </h4>
+                                                    <t t-call="website.publish_management">
+                                                        <t t-set="object" t-value="emeritus"/>
+                                                    </t>
                                                 </div>
                                             </div>
-                                            <div class="member-body">
-                                                <p style="text-align: justify;" t-field="employee.public_info" class="mt16"/>
+                                            <div class="emeritus-body">
+                                                <p style="text-align: justify;" t-field="emeritus.public_info"/>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="oe_structure">
+                </div>
+            </div>
+        </t>
+    </t>
+
+    <t id="update" name="Update Member" page="True">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                </div>
+                <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
+                    <div class="col-md-12 col-sm-12 mt16 colsize" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
+                        <section class="s_image_floating">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="member-header text-center">
+                                            <h2>
+                                                <strong t-field="employee.name"/>
+                                            </h2>
+                                        </div>
+                                        <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
+                                            <div class="o_container">
+                                                <img t-att-src="website.imagemagick_url(employee, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow mt16"/>
+                                            </div>
+                                        </div>
+                                        <div class="member-body">
+                                            <form class="mt32" method="post">
+                                                <textarea name="public_info" style="width: 560px; height: 400px;">
+                                                    <t t-esc="employee.public_info"/>
+                                                </textarea>
+                                                <div>
+                                                    <input type="submit" class="btn btn-success" value="Spara"/>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <br/>
+                                        <div class="member-footer mt8">
+                                            <t t-esc="employee.work_email"/>
                                             <br/>
-                                            <div class="member-footer mt8">
-                                                <t t-esc="employee.work_email"/><br/>
                                                 Stol: <t t-esc="employee.chair_nbr"/>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </section>
-                        </div>
-                    </div>
-                    <div class="oe_structure">
+                            </div>
+                        </section>
                     </div>
                 </div>
-            </t>
-        </data>
-
-        <template id="emeritus" name="Academy Emeritus" page="True">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure">
-                    </div>
-                    <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
-                        <div class="col-md-12 col-sm-12" style="border: 1px solid #369; background-color: #fefefe; padding: 0px;">
-                            <section class="s_image_floating">
-                                <div class="col-md-12 col-sm-12 text-center" t-if="len(emeritus)">
-                                    <h2>Seniorledamöter</h2>
-                                </div>
-                                <div class="container">
-                                    <div t-foreach="emeritus" t-as="emeritus" class="col-md-12 col-sm-12 mt32 mb32">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
-                                                    <div class="o_container text-center">
-                                                        <img t-att-src="website.imagemagick_url(emeritus, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow"/>
-                                                        <h4><strong t-field="emeritus.name"/></h4>
-                                                        <t t-call="website.publish_management"><t t-set="object" t-value="emeritus"/></t>
-                                                    </div>
-                                                </div>
-                                                <div class="emeritus-body">
-                                                    <p style="text-align: justify;" t-field="emeritus.public_info"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                    <div class="oe_structure">
-                    </div>
+                <div class="oe_structure">
                 </div>
-            </t>
-        </template>
+            </div>
+        </t>
+    </t> -->
 
-        <template id="update_member" name="Update Member" page="True">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure">
-                    </div>
-                    <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
-                        <div class="col-md-12 col-sm-12 mt16 colsize" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
-                            <section class="s_image_floating">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="member-header text-center">
-                                                <h2><strong t-field="employee.name"/></h2>
-                                            </div>
-                                            <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
-                                                <div class="o_container">
-                                                    <img t-att-src="website.imagemagick_url(employee, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow mt16"/>
-                                                </div>
-                                            </div>
-                                            <div class="member-body">
-                                                <form class="mt32" method="post">
-                                                    <textarea name="public_info" style="width: 560px; height: 400px;"><t t-esc="employee.public_info"/></textarea>
-                                                    <div><input type="submit" class="btn btn-success" value="Spara"/></div>
-                                                </form>
-                                            </div>
-                                            <br/>
-                                            <div class="member-footer mt8">
-                                                <t t-esc="employee.work_email"/><br/>
-                                                Stol: <t t-esc="employee.chair_nbr"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                    <div class="oe_structure">
-                    </div>
-                </div>
-            </t>
-        </template>
-
-
-        <!-- Update employee form -->
-        <record id="view_employee_form" model="ir.ui.view">
+    <!-- Update employee form -->
+    <record id="view_employee_form" model="ir.ui.view">
         <field name="name">hr.employee.form.academy</field>
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
@@ -184,9 +187,9 @@
                 <field name="chair_nbr"/>
                 <field name="emeritus_year"/>
                 <field name="website_published"/>
-                <field name="public_info" colspan="6"/>
+                <field name="public_info"/>
             </field>
         </field>
+    </record>
 
-        </record>
-
+</odoo>

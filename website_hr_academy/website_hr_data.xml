@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
     <!-- hr single view -->
-        <record id="im_hr_single" model="image.recipe">
+        <!-- <record id="im_hr_single" model="image.recipe">
             <field name="name">single_resize</field>
             <field name="recipe">image.transform(resize=width+'x'+height+'>')</field>
         </record>
@@ -18,8 +17,7 @@
             <field name="name">height</field>
             <field name="value">400</field>
             <field name="recipe_id" ref="im_hr_single"/>
-        </record>
+        </record> -->
     <!-- end of hr single view -->
 
-    </data>
-</openerp>
+</odoo>

@@ -1,1 +1,1 @@
-#import hr_chair
+from . import hr_chair

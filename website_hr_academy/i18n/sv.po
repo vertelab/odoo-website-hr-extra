@@ -4,46 +4,48 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0-20170120\n"
+"Project-Id-Version: Odoo Server 14.0-20210407\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-27 08:20+0000\n"
-"PO-Revision-Date: 2017-01-27 09:23+0100\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2021-04-27 07:01+0000\n"
+"PO-Revision-Date: 2021-04-27 09:32+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
 "Language: sv\n"
-"X-Generator: Poedit 1.8.9\n"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
-#: view:website:website_hr_academy.update_member
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__adjungerad
 msgid "Adjungerad"
 msgstr "Adjungerad"
 
 #. module: website_hr_academy
-#: field:hr.employee,chair_nbr:0
+#: model:ir.model.fields,field_description:website_hr_academy.field_hr_employee__website_published
+msgid "Available in the website"
+msgstr "Tillgängligt på hemsidan"
+
+#. module: website_hr_academy
+#: model:ir.model.fields,field_description:website_hr_academy.field_hr_employee__chair_nbr
 msgid "Chair"
 msgstr "Tallrik"
 
 #. module: website_hr_academy
-#: view:website:website_hr_academy.chairs
-#: view:website:website_hr_academy.member
-msgid "De 14 ledamöterna"
-msgstr "De 14 ledamöterna"
+#: model:ir.model.fields,field_description:website_hr_academy.field_hr_employee__display_name
+msgid "Display Name"
+msgstr "Visningsnamn"
 
 #. module: website_hr_academy
-#: view:website:website_hr_academy.emeritus
-msgid "Dörja information om"
-msgstr "Dörja information om"
-
-#. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
-#: view:website:website_hr_academy.update_member
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__emeritus
 msgid "Emeritus"
 msgstr "Emeritus"
+
+#. module: website_hr_academy
+#: model:ir.model.fields,field_description:website_hr_academy.field_hr_employee__emeritus_year
+msgid "Emeritus Year"
+msgstr "Emeritus År"
 
 #. module: website_hr_academy
 #: model:ir.model,name:website_hr_academy.model_hr_employee
@@ -51,96 +53,97 @@ msgid "Employee"
 msgstr "Anställd"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields,field_description:website_hr_academy.field_hr_employee__id
+msgid "ID"
+msgstr "ID"
+
+#. module: website_hr_academy
+#: model:ir.model.fields,field_description:website_hr_academy.field_hr_employee____last_update
+msgid "Last Modified on"
+msgstr "Senast ändrad"
+
+#. module: website_hr_academy
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__none
 msgid "None"
-msgstr "None"
+msgstr "Inga"
 
 #. module: website_hr_academy
-#: view:website:website_hr_academy.emeritus
-msgid "Seniorledamöter"
-msgstr "Seniorledamöter"
+#: model:ir.model.fields,field_description:website_hr_academy.field_hr_employee__public_info
+msgid "Public Info"
+msgstr "Publik Info"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__01
 msgid "Stol nr 1"
 msgstr "Stol nr 1"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__10
 msgid "Stol nr 10"
 msgstr "Stol nr 10"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__11
 msgid "Stol nr 11"
 msgstr "Stol nr 11"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__12
 msgid "Stol nr 12"
 msgstr "Stol nr 12"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__13
 msgid "Stol nr 13"
 msgstr "Stol nr 13"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__14
 msgid "Stol nr 14"
 msgstr "Stol nr 14"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__02
 msgid "Stol nr 2"
 msgstr "Stol nr 2"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__03
 msgid "Stol nr 3"
 msgstr "Stol nr 3"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__04
 msgid "Stol nr 4"
 msgstr "Stol nr 4"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__05
 msgid "Stol nr 5"
 msgstr "Stol nr 5"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__06
 msgid "Stol nr 6"
 msgstr "Stol nr 6"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__07
 msgid "Stol nr 7"
 msgstr "Stol nr 7"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__08
 msgid "Stol nr 8"
 msgstr "Stol nr 8"
 
 #. module: website_hr_academy
-#: selection:hr.employee,chair_nbr:0
+#: model:ir.model.fields.selection,name:website_hr_academy.selection__hr_employee__chair_nbr__09
 msgid "Stol nr 9"
 msgstr "Stol nr 9"
 
 #. module: website_hr_academy
-#: view:website:website_hr_academy.member
-msgid "Stol:"
-msgstr "Stol:"
-
-#. module: website_hr_academy
-#: view:website:website_hr_academy.update_member
-msgid "Tallrik:"
-msgstr "Tallrik:"
-
-#. module: website_hr_academy
-#: view:website:website_hr_academy.emeritus
-msgid "Visa information om"
-msgstr "Visa information om"
+#: model:ir.model.fields,help:website_hr_academy.field_hr_employee__emeritus_year
+#, fuzzy
+msgid "The year became emeritus"
+msgstr "Året som titeln emeritus börjar gälla"

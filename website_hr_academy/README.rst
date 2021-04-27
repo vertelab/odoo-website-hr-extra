@@ -16,3 +16,5 @@ Contributors
 
  * Anders Wallenquist <anders.wallenquist@vertel.se>
  * Haojun Zou <haojun.zou@vertel.se>
+ * Han Wong <han.wong@vertel.se>
+ * Carl-Magnus Arvidsson <basse@vertel.se>
