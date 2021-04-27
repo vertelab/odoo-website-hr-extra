@@ -1,9 +1,0 @@
-id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_hr_assignment_manager,res.groups,model_hr_assignment,base.group_hr_user,1,1,1,1
-access_hr_assignment_all,res.groups,model_hr_assignment,base.group_user,1,0,0,0
-access_hr_skill_manager,res.groups,model_hr_skill,base.group_hr_user,1,1,1,1
-access_hr_skill_all,res.groups,model_hr_skill,base.group_user,1,0,0,0
-access_hr_location_manager,res.groups,model_hr_location,base.group_hr_user,1,1,1,1
-access_hr_location_all,res.groups,model_hr_location,base.group_user,1,0,0,0
-access_hr_language_manager,res.groups,model_hr_language,base.group_hr_user,1,1,1,1
-access_hr_language_all,res.groups,model_hr_language,base.group_user,1,0,0,0

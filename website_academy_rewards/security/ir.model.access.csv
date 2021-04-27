@@ -1,5 +1,0 @@
-id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-academy_rewardee,rewardee manager,website_academy_rewards.model_academy_rewardee,base.group_erp_manager,1,1,1,1
-academy_rewardee_public,rewardee public,website_academy_rewards.model_academy_rewardee,base.group_public,1,0,0,0
-academy_reward,reward manager,website_academy_rewards.model_academy_reward,base.group_erp_manager,1,1,1,1
-academy_reward_public,reward public,website_academy_rewards.model_academy_reward,base.group_public,1,0,0,0
