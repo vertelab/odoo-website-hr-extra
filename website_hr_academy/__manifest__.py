@@ -21,13 +21,20 @@
 
 {
     'name': "HR Academy",
-    'version': '1.0',
+    'version': '1.3',
     'category': 'Human Resources',
     'summary': 'Employees viewed as an academy',
     'author': 'Vertel AB',
     'license': 'AGPL-3',
     'website': 'http://www.vertel.se',
-    'depends': ['hr', 'website'],
-    'data': ['website_hr_data.xml', 'website_hr_view.xml'],
+    'depends': [
+        'hr',
+        'website_imagemagick'
+    ],
+    'data': [
+        'website_hr_data.xml',
+        'website_hr_view.xml'
+    ],
     'installable': True,
+    'application': True,
 }

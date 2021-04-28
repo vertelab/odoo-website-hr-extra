@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+    <!-- Update employee form -->
+    <record id="view_employee_form" model="ir.ui.view">
+        <field name="name">hr.employee.form.academy</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="work_location" position="after">
+                <field name="chair_nbr"/>
+                <field name="emeritus_year"/>
+                <field name="website_published"/>
+                <field name="public_info"/>
+            </field>
+        </field>
+    </record>
+    
     <!-- hr single view -->
-        <!-- <record id="im_hr_single" model="image.recipe">
-            <field name="name">single_resize</field>
-            <field name="recipe">image.transform(resize=width+'x'+height+'>')</field>
-        </record>
+    <record id="im_hr_single" model="image.recipe">
+        <field name="name">single_resize</field>
+        <field name="recipe">image.transform(resize=width+'x'+height+'>')</field>
+    </record>
 
-        <record id="im_hr_single_param_one" model="image.recipe.param">
-            <field name="name">width</field>
-            <field name="value">400</field>
-            <field name="recipe_id" ref="im_hr_single"/>
-        </record>
+    <record id="im_hr_single_param_one" model="image.recipe.param">
+        <field name="name">width</field>
+        <field name="value">400</field>
+        <field name="recipe_id" ref="im_hr_single"/>
+    </record>
 
-        <record id="im_hr_single_param_two" model="image.recipe.param">
-            <field name="name">height</field>
-            <field name="value">400</field>
-            <field name="recipe_id" ref="im_hr_single"/>
-        </record> -->
+    <record id="im_hr_single_param_two" model="image.recipe.param">
+        <field name="name">height</field>
+        <field name="value">400</field>
+        <field name="recipe_id" ref="im_hr_single"/>
+    </record>
     <!-- end of hr single view -->
 
 </odoo>

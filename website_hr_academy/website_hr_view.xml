@@ -1,22 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- <t id="chairs_members" name="Our Academy Members">
+    <template id="chairs" name="Our Academy Members">
         <t t-call="website.layout">
             <div id="wrap">
-                <div class="oe_structure">
-                </div>
+                <div class="oe_structure"></div>
                 <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
-                    <div class="col-md-12 col-sm-12" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
-                        <div class="col-sm-12 text-center" t-if="len(employee_ids)">
+                    <div class="col-lg-12 col-md-12" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
+                        <div class="col-md-12 text-center" t-if="len(employee_ids)">
                             <h2>De 14 ledamöterna</h2>
                         </div>
-                        <div t-foreach="employee_ids" t-as="employee" class="col-sm-3 col-lg-2 mt16 text-center colsize">
+                        <div t-foreach="employee_ids" t-as="employee" class="col-md-3 col-lg-2 mt16 text-center colsize">
                             <t t-call="website.publish_management">
                                 <t t-set="object" t-value="employee"/>
                             </t>
                             <div class="clearfix"/>
                             <a t-att-href="'/academy/member/%s' % employee.id">
-                                <img t-att-src="website.image_url(employee, 'image_medium')" class="img shadow img-rounded"/>
+                                <img t-att-src="website.image_url(employee, 'image_512')" class="img shadow img-rounded"/>
                             </a>
                             <div class="mt8">
                                 <a t-att-href="'/academy/member/%s' % employee.id">
@@ -27,19 +27,18 @@
                         <hr/>
                     </div>
                 </div>
-                <div class="oe_structure">
-                </div>
+                <div class="oe_structure"></div>
             </div>
         </t>
-    </t> -->
+    </template>
 
-    <!-- <t id="chair" name="Academy Member" page="True">
+    <template id="member" name="Academy Member">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="oe_structure">
                 </div>
                 <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
-                    <div class="col-md-12 col-sm-12 mt16 colsize" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
+                    <div class="col-lg-12 col-md-12 mt16 colsize" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
                         <ol class="breadcrumb">
                             <li>
                                 <a href="/academy/chairs">De 14 ledamöterna</a>
@@ -51,7 +50,7 @@
                         <section class="s_image_floating">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12">
                                         <div class="member-header text-center">
                                             <h2>
                                                 <strong t-field="employee.name"/>
@@ -62,7 +61,7 @@
                                         </div>
                                         <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
                                             <div class="o_container">
-                                                <img t-att-src="website.imagemagick_url(employee, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow mt16"/>
+                                                <img t-att-src="website.imagemagick_url(employee, 'image_256', 'website_hr_academy.im_hr_single')" class="img img-rounded img-fluid shadow mt16"/>
                                             </div>
                                         </div>
                                         <div class="member-body">
@@ -84,26 +83,26 @@
                 </div>
             </div>
         </t>
-    </t>
+    </template>
 
-    <t id="emeritus" name="Academy Emeritus" page="True">
+    <template id="emeritus" name="Academy Emeritus">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="oe_structure">
                 </div>
                 <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
-                    <div class="col-md-12 col-sm-12" style="border: 1px solid #369; background-color: #fefefe; padding: 0px;">
+                    <div class="col-lg-12 col-md-12" style="border: 1px solid #369; background-color: #fefefe; padding: 0px;">
                         <section class="s_image_floating">
-                            <div class="col-md-12 col-sm-12 text-center" t-if="len(emeritus)">
+                            <div class="col-lg-12 col-md-12 text-center" t-if="len(emeritus)">
                                 <h2>Seniorledamöter</h2>
                             </div>
                             <div class="container">
-                                <div t-foreach="emeritus" t-as="emeritus" class="col-md-12 col-sm-12 mt32 mb32">
+                                <div t-foreach="emeritus" t-as="emeritus" class="col-lg-12 col-md-12 mt32 mb32">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-lg-12">
                                             <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
                                                 <div class="o_container text-center">
-                                                    <img t-att-src="website.imagemagick_url(emeritus, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow"/>
+                                                    <img t-att-src="website.imagemagick_url(emeritus, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-fluid shadow"/>
                                                     <h4>
                                                         <strong t-field="emeritus.name"/>
                                                     </h4>
@@ -126,19 +125,19 @@
                 </div>
             </div>
         </t>
-    </t>
+    </template>
 
-    <t id="update" name="Update Member" page="True">
+    <template id="update_member" name="Update Member">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="oe_structure">
                 </div>
                 <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
-                    <div class="col-md-12 col-sm-12 mt16 colsize" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
+                    <div class="col-lg-12 col-md-12 mt16 colsize" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
                         <section class="s_image_floating">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12">
                                         <div class="member-header text-center">
                                             <h2>
                                                 <strong t-field="employee.name"/>
@@ -146,7 +145,7 @@
                                         </div>
                                         <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
                                             <div class="o_container">
-                                                <img t-att-src="website.imagemagick_url(employee, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow mt16"/>
+                                                <img t-att-src="website.imagemagick_url(employee, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-fluid shadow mt16"/>
                                             </div>
                                         </div>
                                         <div class="member-body">
@@ -175,21 +174,5 @@
                 </div>
             </div>
         </t>
-    </t> -->
-
-    <!-- Update employee form -->
-    <record id="view_employee_form" model="ir.ui.view">
-        <field name="name">hr.employee.form.academy</field>
-        <field name="model">hr.employee</field>
-        <field name="inherit_id" ref="hr.view_employee_form"/>
-        <field name="arch" type="xml">
-            <field name="work_location" position="after">
-                <field name="chair_nbr"/>
-                <field name="emeritus_year"/>
-                <field name="website_published"/>
-                <field name="public_info"/>
-            </field>
-        </field>
-    </record>
-
+    </template>
 </odoo>
