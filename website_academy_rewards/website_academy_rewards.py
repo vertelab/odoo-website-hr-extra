@@ -94,12 +94,12 @@ class WebsiteRewardees(http.Controller):
             rewardees = request.env['academy.rewardee'].sudo().search([('reward_id', '=', reward.id)], order='reward_year desc, sequence_rewardee desc')
         else:
             rewardees = request.env['academy.rewardee'].sudo().search([], order='reward_year desc, sequence_rewardee desc')
-        return request.website.render("website_academy_rewards.index_rewardees", {'reward': reward, 'rewards': rewards, 'rewardees': rewardees, 'year': year})
+        return request.render("website_academy_rewards.index_rewardees", {'reward': reward, 'rewards': rewards, 'rewardees': rewardees, 'year': year})
 
     @http.route(['/rewardee/<model("academy.rewardee"):rewardee>'], type='http', auth="public", website=True)
     def rewardee(self, page=0, year=0, rewardee=None, **post):
         rewards = request.env['academy.reward'].sudo().search([], order='sequence_reward')
-        return request.website.render("website_academy_rewards.index_rewardee", {'rewards': rewards, 'rewardee': request.env['academy.rewardee'].sudo().browse(rewardee.sudo().id),})
+        return request.render("website_academy_rewards.index_rewardee", {'rewards': rewards, 'rewardee': request.env['academy.rewardee'].sudo().browse(rewardee.sudo().id),})
 
     @http.route(['/attachment/<model("ir.attachment"):attachment>/<string:file_name>'], type='http', auth="public", website=True)
     def get_attachment(self, attachment=None, file_name=None, **post):

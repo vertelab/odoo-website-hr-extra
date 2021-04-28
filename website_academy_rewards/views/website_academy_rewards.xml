@@ -36,7 +36,11 @@
                                         <h2 class="text-center mt32">
                                                 År
                                             </h2>
-                                        <t t-foreach="rewards.get_years()" t-as="y">
+
+
+                                            <!-- TODO -->
+
+                                        <!-- <t t-foreach="rewards.get_years()" t-as="y">
                                             <ul>
                                                 <li>
                                                     <h4>
@@ -47,7 +51,10 @@
                                                     </h4>
                                                 </li>
                                             </ul>
-                                        </t>
+                                        </t> -->
+
+
+                                        
                                     </div>
                                     <div class="col-md-12" style="margin-top: 10px; padding: 0px;">
                                         <section id="google-map">
