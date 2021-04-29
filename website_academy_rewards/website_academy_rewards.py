@@ -28,7 +28,8 @@ from odoo import http
 from odoo.tools.translate import _
 from odoo.http import request
 import werkzeug.urls
-
+import logging
+_logger = logging.getLogger(__name__)
 
 class academy_reward(models.Model):  # prize
     _name = "academy.reward"
@@ -40,13 +41,13 @@ class academy_reward(models.Model):  # prize
 
     #@api.model
     def get_years(self):
+        years = []
         for rec in self:
             rewardees = rec.env['academy.rewardee'].search([], order='reward_year desc')
-            years = []
             for r in rewardees:
                 if r.reward_year not in years:
                     years.append(r.reward_year)
-
+        _logger.info(f"Getting years: {years}")
         return years
 
 class academy_rewardee(models.Model):  # who took prize

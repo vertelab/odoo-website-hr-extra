@@ -36,11 +36,7 @@
                                         <h2 class="text-center mt32">
                                                 År
                                             </h2>
-
-
-                                            <!-- TODO -->
-
-                                        <!-- <t t-foreach="rewards.get_years()" t-as="y">
+                                        <t t-foreach="rewards.get_years()" t-as="y">
                                             <ul>
                                                 <li>
                                                     <h4>
@@ -51,10 +47,7 @@
                                                     </h4>
                                                 </li>
                                             </ul>
-                                        </t> -->
-
-
-                                        
+                                        </t>
                                     </div>
                                     <div class="col-md-12" style="margin-top: 10px; padding: 0px;">
                                         <section id="google-map">
@@ -89,7 +82,7 @@
                                                 <div class="col-md-12">
                                                     <div class="col-md-6 mt16">
                                                         <!--<span t-field="r.sudo().partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
-                                                        <img t-att-src="website.imagemagick_url(r.partner_id, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow" style=""/>
+                                                        <img t-att-src="website.imagemagick_url(r.partner_id, 'image_1920', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow" style=""/>
                                                     </div>
                                                     <div class="col-md-6 mb32">
                                                         <a t-att-href="'/rewardee/%s' %r.id">
@@ -222,7 +215,7 @@
                                         <div class="col-md-12">
                                             <div class="col-md-6 mt16">
                                                 <!--<span t-field="rewardee.partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
-                                                <img t-att-src="website.imagemagick_url(rewardee.partner_id, 'image', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow" style=""/>
+                                                <img t-att-src="website.imagemagick_url(rewardee.partner_id, 'image_1920', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow" style=""/>
                                             </div>
                                             <div class="col-md-6 mb32">
                                                 <h2 class="mb32" t-field="rewardee.partner_id.name"/>
@@ -254,12 +247,12 @@
                                                     <li>
                                                         <i class="fa fa-home" style="margin-right: 10px; color: #fa0;"/><span t-field="rewardee.partner_id.street"/>, <span t-field="rewardee.partner_id.zip"/> <span t-field="rewardee.partner_id.city"/>
                                                     </li>
-                                                    <li><i class="fa fa-internet-explorer" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.website"/></li>
-                                                    <li><i class="fa fa-user" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.function"/></li>
-                                                    <li><i class="fa fa-phone" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.phone"/></li>
-                                                    <li><i class="fa fa-mobile" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.mobile"/></li>
-                                                    <li><i class="fa fa-fax" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.fax"/></li>
-                                                    <li><i class="fa fa-envelope-o" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.email"/></li>
+                                                    <li t-if='rewardee.partner_id.website'><i class="fa fa-internet-explorer" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.website"/></li>
+                                                    <li t-if='rewardee.partner_id.function'><i class="fa fa-user" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.function"/></li>
+                                                    <li t-if='rewardee.partner_id.phone'><i class="fa fa-phone" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.phone"/></li>
+                                                    <li t-if='rewardee.partner_id.mobile'><i class="fa fa-mobile" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.mobile"/></li>
+                                                    <!-- <li><i class="fa fa-fax" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.fax"/></li> -->
+                                                    <li t-if='rewardee.partner_id.email'><i class="fa fa-envelope-o" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.email"/></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -418,8 +411,7 @@
                         <address class="well text-left">
                             <div t-field="partner.assigned_partner_id" t-field-options='{
 "widget": "contact",
-"fields": ["address", "website", "phone", "fax", "email"]
-}'/>
+"fields": ["address", "website", "phone", "email"]}'/> <!-- "fax", -->
                         </address>
                     </div>
                 </div>
