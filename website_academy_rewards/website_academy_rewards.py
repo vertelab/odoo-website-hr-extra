@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2015- Vertel AB (<http://www.vertel.se>).
@@ -39,15 +38,13 @@ class academy_reward(models.Model):  # prize
     description = fields.Text(string='Description')
     sequence_reward = fields.Integer(string='Sequence')
 
-    #@api.model
+    @api.model
     def get_years(self):
         years = []
-        for rec in self:
-            rewardees = rec.env['academy.rewardee'].search([], order='reward_year desc')
-            for r in rewardees:
-                if r.reward_year not in years:
-                    years.append(r.reward_year)
-        _logger.info(f"Getting years: {years}")
+        rewardees = self.env['academy.rewardee'].search([], order='reward_year desc')
+        for r in rewardees:
+            if r.reward_year not in years:
+                years.append(r.reward_year)
         return years
 
 class academy_rewardee(models.Model):  # who took prize

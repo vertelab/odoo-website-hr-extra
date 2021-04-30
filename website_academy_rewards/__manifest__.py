@@ -31,10 +31,12 @@ Acacemy Rewards
     'author': 'Vertel AB',
     'license': 'AGPL-3',
     'depends': [
+        'base_setup',
         'website',
         'website_google_map',
         'website_imagemagick',
         'website_blog',
+        'sales_team',
     ],
     'data': [
         'views/website_academy_rewards.xml',
@@ -42,4 +44,5 @@ Acacemy Rewards
     ],
     'qweb': [],
     'installable': True,
+    'application': True,
 }
