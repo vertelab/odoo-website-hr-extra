@@ -17,7 +17,7 @@
     'depends': [
                 'website',
                 'hr',
-                #'website_hr', 
+                #'website_hr',
                 'website_imagemagick'
                ],
     'data': ['views/website_hr_view.xml',

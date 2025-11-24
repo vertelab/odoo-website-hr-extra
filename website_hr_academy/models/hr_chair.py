@@ -45,7 +45,7 @@ class hr_employee(models.Model):
 
 class website_hr(http.Controller):
 
-    @http.route(['/academy/chairs'], type='http', auth="public", website=True)
+    @http.route(['/academy/chairss'], type='http', auth="public", website=True)
     def chairs_members(self, **post):
         employee_ids = request.env['hr.employee'].sudo().search([('chair_nbr', 'not in', ['none', 'emeritus']), ('website_published', '=', True)], order='chair_nbr')
         _logger.warning(f"{employee_ids=}")

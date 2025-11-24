@@ -1,6 +1,8 @@
+# En .pot-fil är en mall för meddelandeöversättningar
+
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* website_academy_rewards
+#   * website_academy_rewards
 #
 msgid ""
 msgstr ""

@@ -1,3 +1,6 @@
+# En fil med namnet sv.po är en lokaliseringsfil för det svenska språket,
+# som används i program för att översätta text. Filändelsen .po står för "Portable Object"
+
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #   * website_academy_rewards
