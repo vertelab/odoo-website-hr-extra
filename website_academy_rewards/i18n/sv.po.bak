@@ -204,5 +204,5 @@ msgstr "reference(s))"
 #. module: website_academy_rewards
 #: view:website:website_academy_rewards.index_rewardee
 #: view:website:website_academy_rewards.index_rewardees
-msgid "År"
+msgid "Year"
 msgstr "År"

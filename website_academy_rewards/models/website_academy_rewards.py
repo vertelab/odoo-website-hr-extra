@@ -33,6 +33,7 @@ import base64
 
 class academy_reward(models.Model):  # prize
     _name = "academy.reward"
+    _description = "Academy Reward"
 
     name = fields.Char(string='Prize Name')
     rewardee_ids = fields.One2many(comodel_name='academy.rewardee', inverse_name='reward_id', string='Winners')
@@ -51,9 +52,10 @@ class academy_reward(models.Model):  # prize
 
 class academy_rewardee(models.Model):  # who took prize
     _name = "academy.rewardee"
+    _description = "Academy Rewardee"
     _order = "reward_year desc, sequence_rewardee desc"
 
-    # ~ @api.one
+    #@api.one
     def _name_(self):
         self.name = '%s - %s' % (self.reward_id.name, self.reward_year)
 

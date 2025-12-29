@@ -27,7 +27,7 @@
                                                 Utmärkelser
                                             </h2>
                                         <t t-foreach="rewards" t-as="r">
-                                            <ul>
+                                            <ul class="list-unstyled">
                                                 <li>
                                                     <h4>
                                                         <i class="fa fa-trophy"/>
@@ -38,20 +38,30 @@
                                                 </li>
                                             </ul>
                                         </t>
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <h4>
+                                                        <i class="fa fa-bookmark"/>
+                                                        <a href="/blog/evenemang-5"><span>Hagdahlsföredrag</span></a>
+                                                    </h4>
+                                                </li>
+                                            </ul>
                                         <h2 class="text-center mt32">
                                                 År
                                             </h2>
                                         <t t-foreach="rewards.get_years()" t-as="y">
-                                            <ul>
-                                                <li>
-                                                    <h4>
-                                                        <i class="fa fa-calendar"/>
-                                                        <a t-att-href="'/reward/year/%s' % y">
-                                                            <span t-esc="y"/>
-                                                        </a>
-                                                    </h4>
-                                                </li>
-                                            </ul>
+                                            <t t-if="y">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <h4>
+                                                            <i class="fa fa-calendar"/>
+                                                            <a t-att-href="'/reward/year/%s' % y">
+                                                                <span t-esc="y"/>
+                                                            </a>
+                                                        </h4>
+                                                    </li>
+                                                </ul>
+                                            </t>
                                         </t>
                                     </div>
                                     <div class="col-md-12" style="margin-top: 10px; padding: 0px;">
@@ -180,32 +190,38 @@
                                     <h2 class="text-center">
                                                 Utmärkelser
                                             </h2>
-                                    <t t-foreach="rewards" t-as="r">
-                                        <ul>
-                                            <li>
-                                                <h4>
-                                                    <i class="fa fa-trophy"/>
-                                                    <a t-att-href="'/reward/%s' %r.id">
-                                                        <span t-field="r.name"/>
-                                                    </a>
-                                                </h4>
-                                            </li>
-                                        </ul>
-                                    </t>
+                                                <t t-foreach="rewards" t-as="r">
+                                                    <t t-set="href"
+                                                       t-value="year and ('/reward/%s/year/%s' % (r.id, year)) or ('/reward/%s' % r.id)"/>
+
+                                                    <ul>
+                                                        <li>
+                                                            <h4>
+                                                                <i class="fa fa-trophy"/>
+                                                                <a t-att-href="href">
+                                                                    <span t-field="r.name"/>
+                                                                </a>
+                                                            </h4>
+                                                        </li>
+                                                    </ul>
+                                                </t>
+
                                     <h2 class="text-center">
                                                 År
                                             </h2>
                                     <t t-foreach="rewards.get_years()" t-as="y">
-                                        <ul>
-                                            <li>
-                                                <h4>
-                                                    <i class="fa fa-calendar"/>
-                                                    <a t-att-href="'/reward/year/%s' % y">
-                                                        <span t-esc="y"/>
-                                                    </a>
-                                                </h4>
-                                            </li>
-                                        </ul>
+                                        <t t-if="y">
+                                            <ul>
+                                                <li>
+                                                    <h4>
+                                                        <i class="fa fa-calendar"/>
+                                                        <a t-att-href="'/reward/year/%s' % y">
+                                                            <span t-esc="y"/>
+                                                        </a>
+                                                    </h4>
+                                                </li>
+                                            </ul>
+                                        </t>
                                     </t>
                                 </div>
                                 <div class="col-md-12" style="margin-top: 10px; padding: 0px;">
