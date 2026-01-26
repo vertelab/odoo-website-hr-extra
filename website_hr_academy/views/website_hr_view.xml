@@ -26,33 +26,47 @@
 <!--
  odoo8
 -->
-        <template id="chairs" name="Our Academy Members">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure">
-                    </div>
-                    <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
-                        <div class="col-md-12 col-sm-12"  style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
-                            <div class="col-sm-12 text-center" t-if="len(employee_ids)">
-                                <h2>De 14 ledamöterna</h2>
-                            </div>
-                            <div t-foreach="employee_ids" t-as="employee" class="col-sm-3 col-lg-2 mt16 text-center colsize">
-                                <t t-call="website.publish_management"><t t-set="object" t-value="employee"/></t>
-                                <div class="clearfix"/>
-                                <a t-att-href="'/academy/member/%s' % employee.id"><img t-att-src="website.image_url(employee,'image_1024','image_medium')" class="img shadow img-rounded"/></a>
+<template id="chairs" name="Our Academy Members">
+    <t t-call="website.layout">
+        <div id="wrap">
+            <div class="oe_structure"/>
+            <div class="container mt32 mb32" style="padding: 0px; max-width: 1140px;">
+                <div class="row">
+                    <div class="col-12" style="border: 1px solid #369; background-color: #fefefe; padding: 20px;">
+                        <div class="text-center" t-if="len(employee_ids)">
+                            <h2>De 14 ledamöterna</h2>
+                        </div>
+
+                        <div class="row">
+                            <div t-foreach="employee_ids" t-as="employee"
+                                 class="col-12 col-sm-6 col-md-4 mt16 text-center colsize">
+                                <t t-call="website.publish_management">
+                                    <t t-set="object" t-value="employee"/>
+                                </t>
+
+                                <a t-att-href="'/academy/member/%s' % employee.id">
+                                    <img t-att-src="website.image_url(employee,'image_1024', '128x128')"
+                                         class="academy-img shadow rounded"
+                                         t-att-alt="employee.name"/>
+                                </a>
                                 <div class="mt8">
-                                    <a t-att-href="'/academy/member/%s' % employee.id"><strong t-field="employee.name"/></a>
+                                    <a t-att-href="'/academy/member/%s' % employee.id">
+                                        <strong t-field="employee.name"/>
+                                    </a>
                                 </div>
                             </div>
-                            <hr/>
                         </div>
-                    </div>
-                    <div class="oe_structure">
+
+                        <hr/>
                     </div>
                 </div>
-            </t>
-        </template>
-        
+            </div>
+            <div class="oe_structure"/>
+        </div>
+    </t>
+</template>
+
+
 
 
 <!--
@@ -79,11 +93,14 @@
                                             </div>
                                             <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
                                                 <div class="o_container">
-                                                    <img t-att-src="website.imagemagick_url(employee, 'image_1024', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow mt16"/>
+                                                    <img t-att-src="website.image_url(employee, 'image_1024')"
+                                                    class="img-fluid rounded shadow mt16"
+                                                    style="max-width: 280px; height: auto;"
+                                                    t-att-alt="employee.name"/>
                                                 </div>
                                             </div>
                                             <div class="member-body">
-                                                <p style="text-align: justify;" t-field="employee.public_info" class="mt16"/>
+                                                <div class="mt-3" t-field="employee.public_info"></div>
                                             </div>
                                             <br/>
                                             <div class="member-footer mt8">
@@ -123,7 +140,7 @@
                                             <div class="col-md-12">
                                                 <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
                                                     <div class="o_container text-center">
-                                                        <img t-att-src="website.imagemagick_url(emeritus, 'image_1024', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow"/>
+                                                        <img t-att-src="website.image_url(emeritus, 'image_1024')" class="img img-rounded img-responsive shadow"/>
                                                         <h4><strong t-field="emeritus.name"/></h4>
                                                         <t t-call="website.publish_management"><t t-set="object" t-value="emeritus"/></t>
                                                     </div>
@@ -162,7 +179,7 @@
                                             </div>
                                             <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
                                                 <div class="o_container">
-                                                    <img t-att-src="website.imagemagick_url(employee, 'image_1024', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow mt16"/>
+                                                    <img t-att-src="website.image_url(employee, 'image_1024')" class="img img-rounded img-responsive shadow mt16"/>
                                                 </div>
                                             </div>
                                             <div class="member-body">

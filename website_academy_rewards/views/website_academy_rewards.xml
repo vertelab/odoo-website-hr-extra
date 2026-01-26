@@ -15,40 +15,91 @@
             </xpath>
         </template>
 
-        <template id="index_rewardees" name="Our Rewardees">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure"></div>
+        <!-- ===================== REWARDEES INDEX ===================== -->
+        <template id="index_rewardees" name="Our Rewardee">
+            <t t-name="website_academy_rewards.index_rewardees">
+                <t t-call="website.layout">
+
+                    <!-- STYLE: samma utseende som övriga sidor -->
+                    <style>
+                        /* Ikoner */
+                        #ref_left_column .fa {
+                            color: #fa0 !important;
+                        }
+
+                        /* Länkar  */
+                        #ref_left_column a,
+                        #ref_left_column a:visited {
+                            color: #4f86c6 !important;
+                            font-weight: 500;
+                            text-decoration: none;
+                        }
+
+                        #ref_left_column a:hover {
+                            color: #2f5f9f !important;
+                            text-decoration: underline;
+                        }
+
+                        /* Rubriker vänster */
+                        #ref_left_column h2,
+                        #ref_left_column h1 {
+                            color: #369 !important;
+                        }
+
+                        /* Rubriker höger */
+                        #ref_content h1 {
+                            color: #369 !important;
+                        }
+                        #ref_content h4 span {
+                            color: #369 !important;
+                        }
+                        .breadcrumb-alla,
+                        .breadcrumb-alla:visited {
+                            color: #4f86c6 !important;
+                            text-decoration: none;
+                        }
+                        .breadcrumb-alla:hover {
+                            color: #2f5f9f !important;
+                            text-decoration: underline;
+                        }
+
+                    </style>
+
+
+                    <div id="wrap">
+                        <div class="oe_structure"/>
                         <div class="container outer-clear">
                             <div class="row">
+
+                                <!-- LEFT COLUMN -->
                                 <div class="col-md-3 col-sm-12 col-xs-12" id="ref_left_column">
                                     <div class="col-md-12">
-                                        <h2 class="text-center">
-                                                Utmärkelser
-                                            </h2>
+                                        <h2 class="text-center">Utmärkelser</h2>
+
                                         <t t-foreach="rewards" t-as="r">
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <h4>
                                                         <i class="fa fa-trophy"/>
-                                                        <a t-att-href="'/reward/%s' %r.id">
+                                                        <a t-att-href="'/reward/%s' % r.id">
                                                             <span t-field="r.name"/>
                                                         </a>
                                                     </h4>
                                                 </li>
                                             </ul>
                                         </t>
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <h4>
-                                                        <i class="fa fa-bookmark"/>
-                                                        <a href="/blog/evenemang-5"><span>Hagdahlsföredrag</span></a>
-                                                    </h4>
-                                                </li>
-                                            </ul>
-                                        <h2 class="text-center mt32">
-                                                År
-                                            </h2>
+
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <h4>
+                                                    <i class="fa fa-bookmark"/>
+                                                    <a href="/blog/evenemang-5">Hagdahlsföredrag</a>
+                                                </h4>
+                                            </li>
+                                        </ul>
+
+                                        <h2 class="text-center mt32">År</h2>
+
                                         <t t-foreach="rewards.get_years()" t-as="y">
                                             <t t-if="y">
                                                 <ul class="list-unstyled">
@@ -64,404 +115,115 @@
                                             </t>
                                         </t>
                                     </div>
-                                    <div class="col-md-12" style="margin-top: 10px; padding: 0px;">
+
+                                    <!-- MAP -->
+                                    <div class="col-md-12" style="margin-top:10px; padding:0;">
                                         <section id="google-map">
-                                            <div class="container box outer-clear" style="width: 100%; margin: auto; padding: 0px;">
-                                                <div class="col-md-12 inner-clear" id="map-google" style="height: 275px;"/></div>
+                                            <div class="container box outer-clear" style="width:100%; margin:auto; padding:0;">
+                                                <div class="col-md-12 inner-clear" id="map-google" style="height:275px;"/>
+                                            </div>
                                         </section>
                                     </div>
                                 </div>
+
+                                <!-- RIGHT COLUMN -->
                                 <div class="col-md-9 col-sm-12 col-xs-12" id="ref_content">
-                                    <div class="">
-                                        <div class="container">
-                                            <t t-if="rewardees">
-                                                <h1 class="text-center">
-                                                    Våra Pristagare
-                                                </h1>
-                                            </t>
-                                            <t t-if="reward">
-                                                <h4 class="text-center" style="margin-top: 0px;">
-                                                    <hr style="display: inline-block; width: 10%; margin-right: 1%; vertical-align:middle"/>
-                                                    <span t-esc="reward.name"/>
-                                                    <hr style="display: inline-block; width: 10%; margin-left: 1%; vertical-align:middle"/>
-                                                </h4>
-                                            </t>
-                                            <t t-if="year">
-                                                <h4 class="text-center" style="margin-top: 0px;">
-                                                    <hr style="display: inline-block; width: 10%; margin-right: 1%; vertical-align:middle"/>
-                                                    <span t-esc="year"/>
-                                                    <hr style="display: inline-block; width: 10%; margin-left: 1%; vertical-align:middle"/>
-                                                </h4>
-                                            </t>
-                                            <t t-foreach="rewardees" t-as="r">
-                                                <div class="col-md-12">
-                                                    <div class="col-md-6 mt16">
-                                                        <!--<span t-field="r.sudo().partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
-                                                        <!--<img t-att-src="website.imagemagick_url(r.partner_id, 'image_1920', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow" style=""/>-->
-                                                    <div t-field="r.partner_id.image_1920" t-options="{ &quot;widget&quot;: &quot;image&quot;, &quot;preview_image&quot;: &quot;avatar_1920&quot;, &quot;style&quot;: &quot;object-fit: cover&quot;, &quot;class&quot;: &quot;w-100 mb-2 rounded-3 border o_partner_image oe_unremovable&quot;, &quot;itemprop&quot;: &quot;image&quot; }"/>
-                                                    </div>
-                                                    <div class="col-md-6 mb32">
-                                                        <a t-att-href="'/rewardee/%s' %r.id">
-                                                            <h2 class="mb32" t-field="r.partner_id.name"/>
-                                                        </a>
-                                                        <p><i class="fa fa-trophy" style="margin-right: 10px; color: #fa0;"/><strong><t t-esc="r.reward_id.name"/> - <t t-esc="r.reward_year"/></strong></p>
-                                                        <t t-if="r.partner_id.child_ids">
-                                                            <t t-foreach="r.partner_id.child_ids" t-as="rc">
-                                                                <p><i class="fa fa-user" style="margin-right: 10px; color: #fa0;"/><t t-esc="rc.name"/></p>
-                                                            </t>
-                                                        </t>
-                                                        <t t-set="attach" t-value="request.env['ir.attachment'].search([('res_id', '=', r.id)])"/>
-                                                        <t t-foreach="attach" t-as="a">
-                                                            <ul>
-                                                                <li><i class="fa fa-file-o" style="margin-right: 10px; color: #fa0;"/><a t-att-href="'/attachment/%s/%s' % (a.id, a.name)"><span t-field="a.name"/></a></li>
-                                                            </ul>
-                                                        </t>
-                                                        <p t-if="r.partner_id.rewardee_ids.comment"><i class="fa fa-quote-left" style="margin-right: 10px; color: #fa0;"/><t t-esc="r.partner_id.rewardee_ids.comment"/><i class="fa fa-quote-right" style="margin-left: 10px; color: #fa0;"/></p>
-                                                    </div>
-                                                </div>
-                                            </t>
-                                        </div>
-                                        <ol class="breadcrumb mt32" style="max-width: 750px; margin: auto;">
-                                            <li>
-                                                <a href="/rewardees">Alla</a>
-                                            </li>
-                                            <t t-if="year">
-                                                <li class="active">
-                                                    <span t-esc="year"/>
-                                                </li>
-                                            </t>
-                                            <t t-if="reward">
-                                                <li class="active">
-                                                    <span t-esc="reward.name"/>
-                                                </li>
-                                            </t>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="oe_structure"></div>
-                </div>
-                    <script>
-                        var locations = [
-
-                        <t t-foreach='rewardees' t-as='r'>
-                            <t t-if="r.partner_id.is_company">
-                                ['<t t-raw="r.partner_id.name"/>', <t t-raw="r.partner_id.partner_latitude"/>, <t t-raw="r.partner_id.partner_longitude"/>, <t t-raw="r.partner_id.id"/>],
-                            </t>
-                        </t>
-                       ];
-                          var map = new google.maps.Map(document.getElementById('map-google'), {
-                         zoom: 7,
-                         center: new google.maps.LatLng(58.4105659,15.6314626,20.25),
-                         mapTypeId: google.maps.MapTypeId.ROADMAP
-                       });
-
-                       var infowindow = new google.maps.InfoWindow();
-
-                       var marker, i;
-
-                       for (i = 0; i &lt; locations.length; i++) {
-                         marker = new google.maps.Marker({
-                            content: locations[i][0],
-                           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                           map: map
-                         });
-
-                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                           return function() {
-                             infowindow.setContent(locations[i][0]);
-                             infowindow.open(map, marker);
-                           }
-                         })(marker, i));
-                       }
-                    </script>
-            </t>
-        </template>
-
-        <template id="index_rewardee" name="Our Rewardee">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure"></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-12 col-xs-12" id="ref_left_column">
-                                <div class="col-md-12">
-                                    <h2 class="text-center">
-                                                Utmärkelser
-                                            </h2>
-                                                <t t-foreach="rewards" t-as="r">
-                                                    <t t-set="href"
-                                                       t-value="year and ('/reward/%s/year/%s' % (r.id, year)) or ('/reward/%s' % r.id)"/>
-
-                                                    <ul>
-                                                        <li>
-                                                            <h4>
-                                                                <i class="fa fa-trophy"/>
-                                                                <a t-att-href="href">
-                                                                    <span t-field="r.name"/>
-                                                                </a>
-                                                            </h4>
-                                                        </li>
-                                                    </ul>
-                                                </t>
-
-                                    <h2 class="text-center">
-                                                År
-                                            </h2>
-                                    <t t-foreach="rewards.get_years()" t-as="y">
-                                        <t t-if="y">
-                                            <ul>
-                                                <li>
-                                                    <h4>
-                                                        <i class="fa fa-calendar"/>
-                                                        <a t-att-href="'/reward/year/%s' % y">
-                                                            <span t-esc="y"/>
-                                                        </a>
-                                                    </h4>
-                                                </li>
-                                            </ul>
-                                        </t>
-                                    </t>
-                                </div>
-                                <div class="col-md-12" style="margin-top: 10px; padding: 0px;">
-                                    <section id="google-map">
-                                        <div class="container box outer-clear" style="width: 100%; margin: auto; padding: 0px;">
-                                            <div class="col-md-12 inner-clear" id="map-google" style="height: 275px;"/></div>
-                                    </section>
-                                </div>
-                            </div>
-                            <div class="col-md-9 col-sm-12 col-xs-12" id="ref_content">
-                                <div class="">
                                     <div class="container">
-                                        <div class="col-md-12">
-                                            <div class="col-md-6 mt16">
-                                                <!--<span t-field="rewardee.partner_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
-<!--
-                                                <img t-att-src="website.imagemagick_url(rewardee.partner_id, 'image_1920', 'website_hr_academy.im_hr_single')" class="img img-rounded img-responsive shadow" style=""/>
--->
 
-                                              <div t-field="rewardee.partner_id.image_1920" t-options="{ &quot;widget&quot;: &quot;image&quot;, &quot;preview_image&quot;: &quot;avatar_1920&quot;, &quot;style&quot;: &quot;object-fit: cover&quot;, &quot;class&quot;: &quot;w-100 mb-2 rounded-3 border o_partner_image oe_unremovable&quot;, &quot;itemprop&quot;: &quot;image&quot; }"/>
-                                            </div>
-                                            <div class="col-md-6 mb32">
-                                                <h2 class="mb32" t-field="rewardee.partner_id.name"/>
-                                                <t t-if="rewardee.partner_id.child_ids">
-                                                    <t t-foreach="rewardee.partner_id.child_ids" t-as="rc">
-                                                        <p>
-                                                            <i class="fa fa-user" style="margin-right: 10px; color: #fa0;"/>
-                                                            <t t-esc="rc.name"/>
-                                                        </p>
+
+                                            <h1 class="text-center">Våra Pristagare</h1>
+
+
+                                        <t t-if="reward">
+                                            <h4 class="text-center">
+                                                <hr style="display:inline-block;width:10%;margin-right:1%"/>
+                                                <span t-esc="reward.name"/>
+                                                <hr style="display:inline-block;width:10%;margin-left:1%"/>
+                                            </h4>
+                                        </t>
+
+                                        <!--
+                                        <t t-if="year">
+                                            <h4 class="text-center">
+                                                <hr style="display:inline-block;width:10%;margin-right:1%"/>
+                                                <span t-esc="year"/>
+                                                <hr style="display:inline-block;width:10%;margin-left:1%"/>
+                                            </h4>
+                                        </t>
+                                        -->
+
+                                        <t t-foreach="rewardees" t-as="r">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6 mt16">
+                                                    <div t-field="r.partner_id.image_1920"
+                                                         t-options="{'widget':'image','class':'w-100 rounded-3 border'}"/>
+                                                </div>
+
+                                                <div class="col-md-6 mb32">
+                                                    <a t-att-href="'/rewardee/%s' % r.id">
+                                                        <h2 t-field="r.partner_id.name"/>
+                                                    </a>
+
+                                                    <p>
+                                                        <i class="fa fa-trophy"/>
+                                                        <strong>
+                                                            <t t-esc="r.reward_id.name"/> – <t t-esc="r.reward_year"/>
+                                                        </strong>
+                                                    </p>
+
+                                                    <t t-if="r.partner_id.child_ids">
+                                                        <t t-foreach="r.partner_id.child_ids" t-as="rc">
+                                                            <p><i class="fa fa-user"/> <t t-esc="rc.name"/></p>
+                                                        </t>
                                                     </t>
-                                                </t>
-                                                <t t-set="attach" t-value="request.env['ir.attachment'].search([('res_id', '=', rewardee.id)])"/>
-                                                <t t-foreach="attach" t-as="a">
-                                                    <ul>
-                                                        <li>
-                                                            <i class="fa fa-file-o" style="margin-right: 10px; color: #fa0;"/>
-                                                            <a t-att-href="'/attachment/%s/%s' % (a.id, a.name)">
-                                                                <span t-field="a.name"/>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </t>
-                                                <p t-if="rewardee.partner_id.rewardee_ids[0].comment">
-                                                    <i class="fa fa-quote-left" style="margin-right: 10px; color: #fa0;"/>
-                                                    <t t-esc="rewardee.partner_id.rewardee_ids[0].comment"/>
-                                                    <i class="fa fa-quote-right" style="margin-left: 10px; color: #fa0;"/>
-                                                </p>
-                                                <ul>
-                                                    <li>
-                                                        <i class="fa fa-home" style="margin-right: 10px; color: #fa0;"/><span t-field="rewardee.partner_id.street"/> <span t-field="rewardee.partner_id.zip"/> <span t-field="rewardee.partner_id.city"/>
-                                                    </li>
-                                                    <li><i class="fa fa-internet-explorer" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.website"/></li>
-                                                    <li><i class="fa fa-user" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.function"/></li>
-                                                    <li><i class="fa fa-phone" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.phone"/></li>
-                                                    <!-- <li><i class="fa fa-fax" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.fax"/></li> -->
-                                                    <li><i class="fa fa-envelope-o" style="margin-right: 10px; color: #fa0;"/> <span t-field="rewardee.partner_id.email"/></li>
-                                                </ul>
+
+                                                    <t t-set="attach" t-value="request.env['ir.attachment'].search([('res_id','=',r.id)])"/>
+                                                    <t t-foreach="attach" t-as="a">
+                                                        <ul>
+                                                            <li>
+                                                                <i class="fa fa-file-o"/>
+                                                                <a t-att-href="'/attachment/%s/%s' % (a.id, a.name)">
+                                                                    <span t-field="a.name"/>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </t>
+
+                                                    <p t-if="r.partner_id.rewardee_ids.comment">
+                                                        <i class="fa fa-quote-left"/>
+                                                        <t t-esc="r.partner_id.rewardee_ids.comment"/>
+                                                        <i class="fa fa-quote-right"/>
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </t>
+                                            <t t-if="reward">
+                                            <span t-esc="reward.description"/>
+                                             </t>
+                                                  <ol class="breadcrumb mt32">
+                                                    <li class="active">
+                                                        <a href="/rewardees" class="breadcrumb-alla">Alla</a>
+
+                                                    </li>
+
+                                                    <t t-if="reward">
+                                                        <li class="active">
+                                                            <span> &#160;/ </span>
+                                                            <span t-esc="reward.name"/>
+                                                        </li>
+                                                    </t>
+                                                </ol>
                                     </div>
-                                    <ol class="breadcrumb mt32" style="max-width: 750px; margin: auto;">
-                                        <li>
-                                            <a href="/rewardees">Alla</a>
-                                        </li>
-                                        <li class="active">
-                                            <span t-field="rewardee.partner_id.name"/>
-                                        </li>
-                                    </ol>
                                 </div>
                             </div>
                         </div>
+                        <div class="oe_structure"/>
                     </div>
-                    <div class="oe_structure"></div>
-                </div>
-                    <script>
-                        var locations = [
 
-
-                        <t t-if="rewardee.partner_id.is_company">
-                                    ['
-                            <t t-raw="rewardee.partner_id.name"/>',
-                            <t t-raw="rewardee.partner_id.partner_latitude"/>,
-                            <t t-raw="rewardee.partner_id.partner_longitude"/>,
-                            <t t-raw="rewardee.partner_id.id"/>],
-                                </t>
-                               ];
-                                  var map = new google.maps.Map(document.getElementById('map-google'), {
-                                 zoom: 7,
-                                 center: new google.maps.LatLng(58.4105659,15.6314626,20.25),
-                                 mapTypeId: google.maps.MapTypeId.ROADMAP
-                               });
-
-                               var infowindow = new google.maps.InfoWindow();
-
-                               var marker, i;
-
-                               for (i = 0; i &lt; locations.length; i++) {
-                                 marker = new google.maps.Marker({
-                                    content: locations[i][0],
-                                   position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                   map: map
-                                 });
-
-                                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                                   return function() {
-                                     infowindow.setContent(locations[i][0]);
-                                     infowindow.open(map, marker);
-                                   }
-                                 })(marker, i));
-                               }
-
-                    </script>
+                </t>
             </t>
         </template>
 
-        <!-- Option: left column: World Map -->
-        <!--<template id="opt_country" inherit_id="website_customer.index" customize_show="True" name="Show Map">-->
-        <!--<xpath expr="//div[@id='ref_left_column']" position="inside">-->
-        <!--&lt;!&ndash; modal for large map &ndash;&gt;-->
-        <!--<div class="modal fade customer_map_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
-        <!--<div class="modal-dialog modal-lg">-->
-        <!--<div class="modal-content">-->
-        <!--<div class="modal-header">-->
-        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-        <!--<h4 class="modal-title">Region Map</h4>-->
-        <!--</div>-->
-        <!--<iframe t-attf-src="/google_map/?width=898&amp;height=485&amp;partner_ids=#{ google_map_partner_ids }&amp;partner_url=/customers/"-->
-        <!--style="width:898px; height:485px; border:0; padding:0; margin:0;"></iframe>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--&lt;!&ndash; modal end &ndash;&gt;-->
-        <!--<h3>Region Map<button class="btn btn-link" data-toggle="modal" data-target=".customer_map_modal"><span class="fa fa-external-link" /></button></h3>-->
-        <!--<ul class="nav">-->
-        <!--<iframe t-attf-src="/google_map?width=260&amp;height=240&amp;partner_ids=#{ google_map_partner_ids }&amp;partner_url=/customers/"-->
-        <!--style="width:260px; height:240px; border:0; padding:0; margin:0;" scrolling="no"></iframe>-->
-        <!--</ul>-->
-        <!--</xpath>-->
-        <!--</template>-->
-
-        <!--<template id="opt_reward_list" inherit_id="website_customer.index" customize_show="True" name="Filter on Rewards">-->
-        <!--<xpath expr="//div[@id='ref_left_column']" position="inside">-->
-        <!--<h3>References by Reward</h3>-->
-        <!--<ul class="nav nav-pills nav-stacked mt16 mb32">-->
-        <!--<t t-foreach="rewards" t-as="reward_dict">-->
-        <!--<t t-if="reward_dict['reward_id']">-->
-        <!--<li t-att-class="reward_dict['country_id'][0] == current_country_id and 'active' or ''">-->
-        <!--<a t-attf-href="/rewardees/#{ country_dict['country_id'][0] and 'country/%s' % slug(country_dict['country_id']) or '' }#{ search_path }">-->
-        <!--<span class="badge pull-right" t-esc="country_dict['country_id_count'] or '0'"/>-->
-        <!--<t t-esc="country_dict['country_id'][1]"/>-->
-        <!--</a>-->
-        <!--</li>-->
-        <!--</t>-->
-        <!--</t>-->
-        <!--</ul>-->
-
-        <!--</xpath>-->
-        <!--</template>-->
-
-        <template id="details" name="Rewardee Detail">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure"/>
-                    <div class="container mt16">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <ol class="breadcrumb">
-                                    <li><a href="/rewardees">Our Rewardees</a></li>
-                                    <li class="active"><span t-field="partner.display_name"/></li>
-                                </ol>
-                            </div>
-                            <t t-call="website_partner.partner_detail">
-                                <t t-set="left_column">
-                                    <div id="left_column"><t t-call="website_customer.implemented_by_block"/></div>
-                                </t>
-                                <t t-set="right_column">
-                                    <div id="right_column"><t t-call="website_customer.references_block"/></div>
-                                </t>
-                            </t>
-                        </div>
-                    </div>
-                    <div class="oe_structure"/>
-                </div>
-            </t>
-        </template>
-
-        <template id="partner_details" inherit_id="website_partner.partner_page" name="Partner Detail Columns">
-            <xpath expr="//t[@t-call='website_partner.partner_detail']" position="inside">
-                <t t-set="left_column"><div id="left_column"><t t-call="website_customer.implemented_by_block"/></div></t>
-                <t t-set="right_column"><div id="right_column"><t t-call="website_customer.references_block"/></div></t>
-            </xpath>
-        </template>
-
-        <template id="implemented_by_block" name="Partner Implemented By Block">
-            <t t-if="partner.assigned_partner_id and partner.assigned_partner_id.website_published">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Implemented By</h4>
-                    </div>
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a t-attf-href="/partners/#{slug(partner.assigned_partner_id)}">
-                                <span t-field="partner.assigned_partner_id"/>
-                                <span class="small"> (<t t-esc="len([p for p in partner.assigned_partner_id.implemented_partner_ids if p.website_published])"/> reference(s))</span>
-                            </a>
-                        </h4>
-                        <div><a t-attf-href="/partners/#{slug(partner.assigned_partner_id)}"
-                                t-field="partner.assigned_partner_id.image_medium"
-                                t-field-options='{"widget": "image", "class": "center-block"}'
-                                />
-                        </div>
-                        <address class="well text-left">
-                            <div t-field="partner.assigned_partner_id" t-field-options='{
-"widget": "contact",
-"fields": ["address", "website", "phone", "fax", "email"]
-}'/>
-                        </address>
-                    </div>
-                </div>
-            </t>
-        </template>
-
-        <template id="references_block" name="Partner References Block">
-            <t t-if="any([p.website_published for p in partner.implemented_partner_ids])">
-                <h3 id="references">References</h3>
-                <div t-foreach="partner.implemented_partner_ids" t-as="reference" class="media">
-                    <t t-if="reference.website_published">
-                        <a class="pull-left" t-attf-href="/customers/#{slug(reference)}">
-                            <span t-field="reference.image_small" t-field-options='{"widget": "image", "class": "center-block"}'/>
-                        </a>
-                        <div class="media-body" style="min-height: 64px;">
-                            <a class="media-heading" t-attf-href="/customers/#{slug(reference)}">
-                                <span t-field="reference.self"/>
-                            </a>
-                            <div t-field='reference.website_short_description'/>
-                        </div>
-                    </t>
-                </div>
-            </t>
-        </template>
 
         <!-- rewardee form view -->
         <record id="view_rewardee_form" model="ir.ui.view">
@@ -611,7 +373,7 @@
           <field name="view_id" ref="view_reward_list" />
           <field name="context">{"search_default_current": 1}</field>
         </record>
-        <menuitem id="menu_rewardee_all_menu" name="Reward Menu" parent="crm.crm_menu_root" sequence="100" />
+        <menuitem id="menu_rewardee_all_menu" name="Reward Menu" sequence="100" />
         <menuitem id="menu_rewardee_all_view" name="Rewardee" parent="menu_rewardee_all_menu" sequence="100" action="action_rewardee_all_view" />
         <menuitem id="menu_reward_all_view" name="Reward" parent="menu_rewardee_all_menu" sequence="101" action="action_reward_all_view" />
 

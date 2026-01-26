@@ -67,28 +67,42 @@ class WebsiteRewardees(http.Controller):
             }
         )
 
+
+
     @http.route(['/rewardee/<model("academy.rewardee"):rewardee>'], type='http', auth="public", website=True)
     def rewardee(self, page=0, year=0, rewardee=None, **post):
         rewards = request.env['academy.reward'].sudo().search([], order='sequence_reward')
+
         return request.render(
-            "website_academy_rewards.index_rewardee",
+            "website_academy_rewards.index_rewardees",
             {
+                'reward': rewardee.reward_id,
                 'rewards': rewards,
-                'rewardee': request.env['academy.rewardee'].sudo().browse(rewardee.sudo().id),
+                'rewardees': request.env['academy.rewardee'].sudo().browse(rewardee.id),
+                'year': rewardee.reward_year
             }
         )
+
 
     @http.route(['/attachment/<model("ir.attachment"):attachment>/<string:file_name>'],
                 type='http', auth="public", website=True)
     def get_attachment(self, attachment=None, file_name=None, **post):
 
-        filecontent = attachment.raw
-        filename = attachment.res_name.replace(' ', '_')
 
-        headers = [
-            ('Content-Type', attachment.mimetype),
-            ('Content-Length', len(filecontent)),
-            ('Content-Disposition', f'attachment; filename="{filename}"'),
-        ]
 
-        return request.make_response(filecontent, headers=headers)
+                filecontent = attachment.raw or b""
+
+                raw = attachment.res_name or attachment.name or attachment.datas_fname or "document"
+                filename = str(raw).replace(" ", "_")
+
+                mimetype = attachment.mimetype or "application/octet-stream"
+
+                headers = [
+                    ("Content-Type", mimetype),
+                    ("Content-Disposition", f'inline; filename="{filename}"'),
+                    ("Content-Length", str(len(filecontent))),
+                ]
+
+                return request.make_response(filecontent, headers=headers)
+
+
