@@ -51,16 +51,20 @@ class website_hr(http.Controller):
         _logger.warning(f"{employee_ids=}")
         return request.render("website_hr_academy.chairs", {'employee_ids': employee_ids})
 
-    @http.route(['/academy/member/<model("hr.employee"):employee>'], type='http', auth="public", website=True)
-    def chair(self, employee,**post):
-        return request.render("website_hr_academy.member", {'employee': request.env['hr.employee'].sudo().browse(employee.id)})
+    @http.route(['/academy/member/<int:employee_id>'], type='http', auth="public", website=True)
+    def chair(self, employee_id,**post):
+        _logger.warning("BEFORE"*100)
+        _logger.warning(f"{employee_id}")
+        _logger.warning("AFTER"*100)
+        #_logger.warning(f"{}")
+        return request.render("website_hr_academy.member", {'employee': request.env['hr.employee'].sudo().browse(employee_id)})
 
     @http.route(['/academy/emeritus'], type='http', auth="public", website=True)
     def emeritus(self, **post):
         return request.render("website_hr_academy.emeritus",
             {'emeritus': request.env['hr.employee'].sudo().search([('chair_nbr','=','emeritus')], order='emeritus_year desc')})
 
-    @http.route(['/academy/member/<model("hr.employee"):employee>/update'], type='http', auth="public", website=True)
+    @http.route(['/academy/member/<model("hr.employee"):employee>/update'], type='http', auth="user", website=True)
     def update(self, employee,**post):
         if request.httprequest.method == 'POST':
             employee.sudo().write({
