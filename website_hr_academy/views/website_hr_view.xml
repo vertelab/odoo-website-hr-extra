@@ -40,15 +40,18 @@
                         <div class="row">
                             <div t-foreach="employee_ids" t-as="employee"
                                  class="col-12 col-sm-6 col-md-4 mt16 text-center colsize">
-                                <t t-call="website.publish_management">
+                                <!--<t t-call="website.publish_management">
                                     <t t-set="object" t-value="employee"/>
-                                </t>
+                                </t>-->
 
-                                <a t-att-href="'/academy/member/%s' % employee.id">
-                                    <img t-att-src="website.image_url(employee,'image_1024', '128x128')"
-                                         class="academy-img shadow rounded"
-                                         t-att-alt="employee.name"/>
-                                </a>
+                                    <a t-att-href="'/academy/member/%s' % employee.id"
+                                       style="display:block; border-radius:6px; overflow:hidden; box-shadow:0 6px 16px rgba(0,0,0,.18);">
+                                      <img t-att-src="website.image_url(employee, 'image_1024')"
+                                           class="academy-img"
+                                           t-att-alt="employee.name"
+                                           style="width:100%; aspect-ratio:1/1; object-fit:cover; display:block;"/>
+                                    </a>
+
                                 <div class="mt8">
                                     <a t-att-href="'/academy/member/%s' % employee.id">
                                         <strong t-field="employee.name"/>
@@ -87,10 +90,10 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="member-header text-center">
+                                            <!--<div class="member-header text-center">
                                                 <h2><strong t-field="employee.name"/></h2>
                                                 <t t-call="website.publish_management"><t t-set="object" t-value="employee"/></t>
-                                            </div>
+                                            </div>-->
                                             <div class="o_image_floating o_margin_l pull-left" style="max-width: 400px;">
                                                 <div class="o_container">
                                                     <img t-att-src="website.image_url(employee, 'image_1024')"
