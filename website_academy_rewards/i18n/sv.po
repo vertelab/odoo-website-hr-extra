@@ -1,0 +1,185 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_academy_rewards
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20260213\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-16 10:19+0000\n"
+"PO-Revision-Date: 2026-02-16 11:22+0100\n"
+"Last-Translator: Jakob Krabbe <jakob.krabbe@vertel.se>\n"
+"Language-Team: \n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: website_academy_rewards
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.index_rewardees
+msgid "<span>  / </span>"
+msgstr "<span>  / </span>"
+
+#. module: website_academy_rewards
+#: model:ir.actions.act_window,name:website_academy_rewards.action_reward_all_view
+#: model:ir.model,name:website_academy_rewards.model_academy_reward
+msgid "Academy Reward"
+msgstr "Akademins belöning"
+
+#. module: website_academy_rewards
+#: model:ir.actions.act_window,name:website_academy_rewards.action_rewardee_all_view
+#: model:ir.model,name:website_academy_rewards.model_academy_rewardee
+msgid "Academy Rewardee"
+msgstr "Akademins prisvinnare"
+
+#. module: website_academy_rewards
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.index_rewardees
+msgid "Alla"
+msgstr "Alla"
+
+#. module: website_academy_rewards
+#: model:ir.model,name:website_academy_rewards.model_blog_post
+msgid "Blog Post"
+msgstr "Blogginlägg"
+
+#. module: website_academy_rewards
+#: model:ir.model,name:website_academy_rewards.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__create_uid
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__create_uid
+msgid "Created by"
+msgstr "Skapad av"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__create_date
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__create_date
+msgid "Created on"
+msgstr "Skapad den"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__description
+msgid "Description"
+msgstr "Beskrivning"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__display_name
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__display_name
+msgid "Display Name"
+msgstr "Visningsnamn"
+
+#. module: website_academy_rewards
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.index_rewardees
+msgid "Hagdahlsföredrag"
+msgstr "Hagdahlsföredrag"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__id
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__id
+msgid "ID"
+msgstr "ID"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__comment
+msgid "Justification"
+msgstr "Motivering"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__write_uid
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__write_uid
+msgid "Last Updated by"
+msgstr "Senast uppdaterad av"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__write_date
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__write_date
+msgid "Last Updated on"
+msgstr "Senast uppdaterad den"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__name
+msgid "Name"
+msgstr "Namn"
+
+#. module: website_academy_rewards
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.footer_custom
+msgid "Our Rewardees"
+msgstr "Våra pristagare"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_res_partner__press_id
+#: model:ir.model.fields,field_description:website_academy_rewards.field_res_users__press_id
+msgid "Press"
+msgstr "Press"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__reward_id
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.view_reward_form
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.view_reward_list
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.view_rewardee_form
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.view_rewardee_list
+msgid "Prize"
+msgstr "Pris"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__name
+msgid "Prize Name"
+msgstr "Prisets namn"
+
+#. module: website_academy_rewards
+#: model:ir.ui.menu,name:website_academy_rewards.menu_reward_all_view
+msgid "Reward"
+msgstr "Belöning"
+
+#. module: website_academy_rewards
+#: model:ir.ui.menu,name:website_academy_rewards.menu_rewardee_all_menu
+msgid "Reward Menu"
+msgstr "Belöningsmeny"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_blog_post__partner_ids
+#: model:ir.model.fields,field_description:website_academy_rewards.field_res_partner__rewardee_ids
+#: model:ir.model.fields,field_description:website_academy_rewards.field_res_users__rewardee_ids
+#: model:ir.ui.menu,name:website_academy_rewards.menu_rewardee_all_view
+msgid "Rewardee"
+msgstr "Belöningsmottagare"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__sequence_reward
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__sequence_rewardee
+msgid "Sequence"
+msgstr "Sekvens"
+
+#. module: website_academy_rewards
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.index_rewardees
+msgid "Utmärkelser"
+msgstr "Utmärkelser"
+
+#. module: website_academy_rewards
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.index_rewardees
+msgid "Våra Pristagare"
+msgstr "Våra Pristagare"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__partner_id
+msgid "Winner"
+msgstr "Vinnare"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_reward__rewardee_ids
+msgid "Winners"
+msgstr "Vinnare"
+
+#. module: website_academy_rewards
+#: model:ir.model.fields,field_description:website_academy_rewards.field_academy_rewardee__reward_year
+msgid "Year"
+msgstr "År"
+
+#. module: website_academy_rewards
+#: model_terms:ir.ui.view,arch_db:website_academy_rewards.index_rewardees
+msgid "År"
+msgstr "År"
