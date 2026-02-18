@@ -188,12 +188,13 @@
                                                             </li>
                                                         </ul>
                                                     </t>
-
-                                                    <p t-if="r.partner_id.rewardee_ids.comment">
-                                                        <i class="fa fa-quote-left"/>
-                                                        <t t-esc="r.partner_id.rewardee_ids.comment"/>
-                                                        <i class="fa fa-quote-right"/>
-                                                    </p>
+                                                    <t t-foreach="r.partner_id.rewardee_ids" t-as="rewardee_id" >
+                                                        <p t-if="rewardee_id.comment">
+                                                            <i class="fa fa-quote-left"/>
+                                                            <t t-esc="rewardee_id.comment"/>
+                                                            <i class="fa fa-quote-right"/>
+                                                        </p>
+                                                    </t>
                                                 </div>
                                             </div>
                                         </t>
