@@ -177,7 +177,7 @@
                                                         </t>
                                                     </t>
 
-                                                    <t t-set="attach" t-value="request.env['ir.attachment'].search([('res_id','=',r.id)])"/>
+                                                    <t t-set="attach" t-value="request.env['ir.attachment'].sudo().search([('res_id','=',r.id)])"/>
                                                     <t t-foreach="attach" t-as="a">
                                                         <ul>
                                                             <li>
