@@ -13,7 +13,7 @@
     'summary': 'Employees viewed as a academy',
     'author': 'Vertel AB',
     'license': 'AGPL-3',
-    'website': 'http://www.vertel.se',
+    'website': 'https://vertel.se/apps/odoo-website-hr-extra/website_hr_academy',
     'depends': [
                 'website',
                 'hr',

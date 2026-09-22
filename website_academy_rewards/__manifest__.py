@@ -21,7 +21,7 @@
 {
     'name': 'Academy Awards',
     'category': 'Website',
-    'website': 'https://www.vertel.se',
+    'website': 'https://vertel.se/apps/odoo-website-hr-extra/website_academy_rewards',
     'summary': 'Academy rewards with partners as rewardees',
     'version': '1.0',
     'description': """
