@@ -8,9 +8,20 @@
 
 {
     'name': 'HR Academy',
-    'version': '1.1',
+    'version': '18.0.1.1.0',
     'category': 'Human Resources',
-    'summary': 'Employees viewed as a academy',
+    'summary': 'Employees viewed as a academy.',
+    'description': '''
+HR Academy
+==========
+
+    Employees viewed as a academy.
+
+    Features:
+
+        - UI Integration: Extends 1 view(s) in the Odoo interface.
+        - Extends Odoo: Builds on hr.employee.
+    ''',
     'author': 'Vertel AB',
     'license': 'AGPL-3',
     'website': 'https://vertel.se/apps/odoo-website-hr-extra/website_hr_academy',
