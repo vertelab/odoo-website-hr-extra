@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015- Vertel AB (<http://www.vertel.se>).
+#    Copyright (C) 2015- Vertel Sverige AB (<http://www.vertel.se>).
 #
 #    This progrupdateam is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,22 +21,14 @@
 {
     'name': 'Academy Awards',
     'category': 'Website',
-    'website': 'https://vertel.se/apps/odoo-website-hr-extra/website_academy_rewards',
-    'summary': 'Academy rewards with partners as rewardees.',
-    'version': '18.0.1.0.0',
-    'description': '''
-Academy Awards
-==============
-
-    Academy rewards with partners as rewardees.
-
-    Features:
-
-        - Web integration: Exposes HTTP endpoints for external systems.
-        - UI Integration: Extends 1 view(s) in the Odoo interface.
-        - Extends Odoo: Builds on academy.reward, academy.rewardee, blog.post, partner_id.
-    ''',
-    'author': 'Vertel AB',
+    'website': 'https://www.vertel.se',
+    'summary': 'Academy rewards with partners as rewardees',
+    'version': '1.0',
+    'description': """
+Acacemy Rewards
+===========================
+""",
+    'author': 'Vertel Sverige AB',
     'license': 'AGPL-3',
     'depends': [
         'website',
